@@ -1,7 +1,6 @@
 export type UserType = {
   id: number,
-  status: string,
+  isPro: boolean,
   name: string,
-  nameUser: string,
-  imgUser: string,
+  avatarUrl: string,
 }

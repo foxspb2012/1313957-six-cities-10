@@ -1,4 +1,5 @@
 import type {OfferType} from '../../types/offer';
+import {Housing} from '../../const';
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
 
@@ -22,7 +23,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
       <div style={{ display: 'none' }}>{activeOfferId}</div>
       <div className={`${isNear ? 'near-places__image-wrapper' : 'cities__image-wrapper'} place-card__image-wrapper`}>
         <Link to={`/offer/${offer.id}`}>
-          <img className="place-card__image" src={`img/${offer.imgMain}`} width={260} height={200} alt="Place pic"/>
+          <img className="place-card__image" src={`${offer.previewImage}`} width={260} height={200} alt="Place pic"/>
         </Link>
       </div>
       <div className="place-card__info">
@@ -31,7 +32,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
             <b className="place-card__price-value">€{offer.price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button ${offer.isBookmark ? 'place-card__bookmark-button--active' : ''} button`} type="button">
+          <button className={`place-card__bookmark-button ${offer.isFavorite ? 'place-card__bookmark-button--active' : ''} button`} type="button">
             <svg
               className="place-card__bookmark-icon"
               width={18}
@@ -52,7 +53,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
           <link href="#"/>
           {offer.title}
         </h2>
-        <p className="place-card__type">{offer.features.entire}</p>
+        <p className="place-card__type">{Housing[offer.type]}</p>
       </div>
     </article>
   );

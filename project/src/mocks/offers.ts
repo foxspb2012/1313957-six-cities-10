@@ -2,161 +2,230 @@ import {OfferType} from '../types/offer';
 
 export const offers: OfferType[] = [
   {
-    id: 1,
-    city: 'Amsterdam',
-    title: 'Beautiful luxurious apartment at great location',
-    imgMain: 'apartment-01.jpg',
-    imgOffer: [
-      'apartment-01.jpg',
-      'studio-01.jpg',
-      'room.jpg',
-      'apartment-03.jpg',
-      'apartment-02.jpg',
-      'apartment-03.jpg',
-    ],
-    features: {
-      entire: 'Apartment',
-      bedrooms: 2,
-      adults: 4,
+    city: {
+      name: 'Dusseldorf',
+      location: {
+        latitude: 51.225402,
+        longitude: 6.776314,
+        zoom: 13
+      }
     },
-    insideList: [
-      'Wi-Fi',
-      'Washing machine',
-      'Towels',
-      'Heating',
-      'Coffee machine',
-      'Baby seat',
-      'Kitchen',
-      'Dishwasher',
-      'Cabel TV',
-      'Fridge',
+    previewImage: 'https://10.react.pages.academy/static/hotel/18.jpg',
+    images: [
+      'https://10.react.pages.academy/static/hotel/8.jpg',
+      'https://10.react.pages.academy/static/hotel/6.jpg',
+      'https://10.react.pages.academy/static/hotel/5.jpg',
+      'https://10.react.pages.academy/static/hotel/14.jpg',
+      'https://10.react.pages.academy/static/hotel/1.jpg',
+      'https://10.react.pages.academy/static/hotel/4.jpg',
+      'https://10.react.pages.academy/static/hotel/7.jpg',
+      'https://10.react.pages.academy/static/hotel/12.jpg',
+      'https://10.react.pages.academy/static/hotel/13.jpg',
+      'https://10.react.pages.academy/static/hotel/10.jpg',
+      'https://10.react.pages.academy/static/hotel/3.jpg',
+      'https://10.react.pages.academy/static/hotel/20.jpg',
+      'https://10.react.pages.academy/static/hotel/15.jpg',
+      'https://10.react.pages.academy/static/hotel/19.jpg'
     ],
-    user: 2,
-    review: [2, 3],
-    description: [
-      'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.'
-    ],
-    price: 120,
-    rating: 4.1,
-    isBookmark: false,
-    isPremium: true,
-    isFavorite: true,
-  },
-  {
-    id: 2,
-    city: 'Hamburg',
-    title: 'Wood and stone place',
-    imgMain: 'apartment-02.jpg',
-    imgOffer: [
-      'room.jpg',
-      'apartment-01.jpg',
-      'apartment-03.jpg',
-      'studio-01.jpg',
-      'apartment-02.jpg',
-      'apartment-03.jpg',
-    ],
-    features: {
-      entire: 'Hotel',
-      bedrooms: 3,
-      adults: 6,
-    },
-    insideList: [
-      'Washing machine',
-      'Wi-Fi',
-      'Towels',
-      'Coffee machine',
-      'Kitchen',
-      'Baby seat',
-      'Dishwasher',
-      'Cabel TV',
-    ],
-    user: 1,
-    review: [1],
-    description: [
-      'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
-      'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.'
-    ],
-    price: 132,
-    rating: 4.5,
-    isBookmark: true,
-    isPremium: false,
-    isFavorite: true,
-  },
-  {
-    id: 3,
-    city: 'Amsterdam',
-    title: 'Nice, cozy, warm big bed apartment',
-    imgMain: 'apartment-03.jpg',
-    imgOffer: [
-      'apartment-01.jpg',
-      'room.jpg',
-      'apartment-03.jpg',
-      'apartment-02.jpg',
-      'studio-01.jpg',
-      'apartment-03.jpg',
-    ],
-    features: {
-      entire: 'Room',
-      bedrooms: 1,
-      adults: 2
-    },
-    insideList: [
-      'Wi-Fi',
-      'Towels',
-      'Heating',
-      'Baby seat',
-      'Fridge',
-    ],
-    user: 2,
-    review: [1, 3],
-    description: [
-      'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.'
-    ],
-    price: 150,
-    rating: 3.5,
-    isBookmark: true,
-    isPremium: false,
-    isFavorite: true,
-  },
-  {
-    id: 4,
-    city: 'Cologne',
-    title: 'Wood and stone place',
-    imgMain: 'apartment-01.jpg',
-    imgOffer: [
-      'apartment-03.jpg',
-      'apartment-01.jpg',
-      'room.jpg',
-      'studio-01.jpg',
-      'apartment-02.jpg',
-      'apartment-03.jpg',
-    ],
-    features: {
-      entire: 'Private room',
-      bedrooms: 5,
-      adults: 10
-    },
-    insideList: [
-      'Kitchen',
-      'Washing machine',
-      'Wi-Fi',
-      'Heating',
-      'Towels',
-      'Baby seat',
-      'Cabel TV',
-      'Dishwasher',
-      'Fridge',
-    ],
-    user: 1,
-    review: [4],
-    description: [
-      'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
-      'But where the bustle of the city comes to rest in this alley flowery and colorful. An independent House, strategically located between Rembrand Square and National Opera, .'
-    ],
-    price: 244,
-    rating: 4.5,
-    isBookmark: false,
-    isPremium: true,
+    title: 'Penthouse, 4-5 rooms + 5 balconies',
     isFavorite: false,
+    isPremium: false,
+    rating: 4.1,
+    type: 'hotel',
+    bedrooms: 2,
+    maxAdults: 5,
+    price: 393,
+    goods: [
+      'Laptop friendly workspace',
+      'Washer',
+      'Breakfast',
+      'Air conditioning'
+    ],
+    host: {
+      id: 25,
+      name: 'Angelina',
+      isPro: true,
+      avatarUrl: 'img/avatar-angelina.jpg'
+    },
+    description: 'Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.',
+    location: {
+      latitude: 51.210402,
+      longitude: 6.798314,
+      zoom: 16
+    },
+    id: 1,
+    reviews: [1,4],
+  },
+  {
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13
+      }
+    },
+    previewImage: 'https://10.react.pages.academy/static/hotel/19.jpg',
+    images: [
+      'https://10.react.pages.academy/static/hotel/3.jpg',
+      'https://10.react.pages.academy/static/hotel/2.jpg',
+      'https://10.react.pages.academy/static/hotel/15.jpg',
+      'https://10.react.pages.academy/static/hotel/20.jpg',
+      'https://10.react.pages.academy/static/hotel/9.jpg',
+      'https://10.react.pages.academy/static/hotel/10.jpg',
+      'https://10.react.pages.academy/static/hotel/13.jpg',
+      'https://10.react.pages.academy/static/hotel/18.jpg',
+      'https://10.react.pages.academy/static/hotel/7.jpg',
+      'https://10.react.pages.academy/static/hotel/8.jpg',
+      'https://10.react.pages.academy/static/hotel/16.jpg',
+      'https://10.react.pages.academy/static/hotel/6.jpg',
+      'https://10.react.pages.academy/static/hotel/11.jpg',
+      'https://10.react.pages.academy/static/hotel/4.jpg'
+    ],
+    title: 'Nice, cozy, warm big bed apartment',
+    isFavorite: false,
+    isPremium: false,
+    rating: 3.3,
+    type: 'house',
+    bedrooms: 2,
+    maxAdults: 3,
+    price: 654,
+    goods: [
+      'Breakfast',
+      'Laptop friendly workspace'
+    ],
+    host: {
+      id: 25,
+      name: 'Angelina',
+      isPro: true,
+      avatarUrl: 'img/avatar-angelina.jpg'
+    },
+    description: 'Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.',
+    location: {
+      latitude: 48.843610000000005,
+      longitude: 2.338499,
+      zoom: 16
+    },
+    id: 2,
+    reviews: [2,4],
+  },
+  {
+    city: {
+      name: 'Hamburg',
+      location: {
+        latitude: 53.550341,
+        longitude: 10.000654,
+        zoom: 13
+      }
+    },
+    previewImage: 'https://10.react.pages.academy/static/hotel/6.jpg',
+    images: [
+      'https://10.react.pages.academy/static/hotel/14.jpg',
+      'https://10.react.pages.academy/static/hotel/11.jpg',
+      'https://10.react.pages.academy/static/hotel/5.jpg',
+      'https://10.react.pages.academy/static/hotel/9.jpg',
+      'https://10.react.pages.academy/static/hotel/2.jpg',
+      'https://10.react.pages.academy/static/hotel/13.jpg',
+      'https://10.react.pages.academy/static/hotel/6.jpg',
+      'https://10.react.pages.academy/static/hotel/15.jpg',
+      'https://10.react.pages.academy/static/hotel/12.jpg',
+      'https://10.react.pages.academy/static/hotel/7.jpg',
+      'https://10.react.pages.academy/static/hotel/4.jpg',
+      'https://10.react.pages.academy/static/hotel/17.jpg',
+      'https://10.react.pages.academy/static/hotel/19.jpg',
+      'https://10.react.pages.academy/static/hotel/3.jpg'
+    ],
+    title: 'Nice, cozy, warm big bed apartment',
+    isFavorite: true,
+    isPremium: false,
+    rating: 3,
+    type: 'room',
+    bedrooms: 4,
+    maxAdults: 8,
+    price: 198,
+    goods: [
+      'Air conditioning',
+      'Baby seat',
+      'Fridge',
+      'Breakfast',
+      'Towels',
+      'Dishwasher',
+      'Laptop friendly workspace',
+      'Washer'
+    ],
+    host: {
+      id: 25,
+      name: 'Angelina',
+      isPro: true,
+      avatarUrl: 'img/avatar-angelina.jpg'
+    },
+    description: 'Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.',
+    location: {
+      latitude: 53.534341000000005,
+      longitude: 9.998654,
+      zoom: 16
+    },
+    id: 3,
+    reviews: [2,3,4],
+  },
+  {
+    city: {
+      name: 'Cologne',
+      location: {
+        latitude: 50.938361,
+        longitude: 6.959974,
+        zoom: 13
+      }
+    },
+    previewImage: 'https://10.react.pages.academy/static/hotel/4.jpg',
+    images: [
+      'https://10.react.pages.academy/static/hotel/17.jpg',
+      'https://10.react.pages.academy/static/hotel/9.jpg',
+      'https://10.react.pages.academy/static/hotel/10.jpg',
+      'https://10.react.pages.academy/static/hotel/14.jpg',
+      'https://10.react.pages.academy/static/hotel/6.jpg',
+      'https://10.react.pages.academy/static/hotel/5.jpg',
+      'https://10.react.pages.academy/static/hotel/13.jpg',
+      'https://10.react.pages.academy/static/hotel/3.jpg',
+      'https://10.react.pages.academy/static/hotel/15.jpg',
+      'https://10.react.pages.academy/static/hotel/16.jpg',
+      'https://10.react.pages.academy/static/hotel/19.jpg',
+      'https://10.react.pages.academy/static/hotel/1.jpg',
+      'https://10.react.pages.academy/static/hotel/11.jpg',
+      'https://10.react.pages.academy/static/hotel/7.jpg'
+    ],
+    title: 'Loft Studio in the Central Area',
+    isFavorite: false,
+    isPremium: false,
+    rating: 3.7,
+    type: 'apartment',
+    bedrooms: 3,
+    maxAdults: 8,
+    price: 853,
+    goods: [
+      'Dishwasher',
+      'Air conditioning',
+      'Breakfast',
+      'Baby seat',
+      'Fridge',
+      'Washer',
+      'Towels',
+      'Coffee machine',
+      'Laptop friendly workspace'
+    ],
+    host: {
+      id: 25,
+      name: 'Angelina',
+      isPro: true,
+      avatarUrl: 'img/avatar-angelina.jpg'
+    },
+    description: 'Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.',
+    location: {
+      latitude: 50.934361,
+      longitude: 6.943974,
+      zoom: 16
+    },
+    id: 4,
+    reviews: [3],
   },
 ];

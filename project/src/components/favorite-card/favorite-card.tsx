@@ -1,4 +1,5 @@
 import type {OfferType} from '../../types/offer';
+import {calculateRatingRound} from '../../utils';
 import {Link} from 'react-router-dom';
 
 type FavoriteCardProps = {
@@ -6,13 +7,13 @@ type FavoriteCardProps = {
 };
 
 function FavoriteCard({offer}: FavoriteCardProps): JSX.Element {
-  const rating = `${(Math.round(offer.rating) * 100 / 5).toString()}%`;
+  const rating = calculateRatingRound(offer.rating);
 
   return (
     <article className="favorites__card place-card">
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${offer.id}`}>
-          <img className="place-card__image" src={`img/${offer.imgMain}`} width={150} height={110} alt="Place pic"/>
+          <img className="place-card__image" src={`${offer.previewImage}`} width={150} height={110} alt="Place pic"/>
         </Link>
       </div>
       <div className="favorites__card-info place-card__info">
@@ -37,7 +38,7 @@ function FavoriteCard({offer}: FavoriteCardProps): JSX.Element {
         <h2 className="place-card__name">
           <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
-        <p className="place-card__type">{offer.features.entire}</p>
+        <p className="place-card__type">{offer.type}</p>
       </div>
     </article>
   );

@@ -1,5 +1,5 @@
+import type {OfferType} from '../../types/offer';
 import FavoriteCard from '../favorite-card/favorite-card';
-import {OfferType} from '../../types/offer';
 
 type FavoriteItemProps = {
   city: string;
@@ -8,7 +8,7 @@ type FavoriteItemProps = {
 
 function FavoriteItem(props: FavoriteItemProps) : JSX.Element {
   const {offers, city} = props;
-  const places = offers.filter((offer) => offer.city === city);
+  const places = offers.filter((offer) => offer.city.name === city);
 
   return (
     <li className="favorites__locations-items">

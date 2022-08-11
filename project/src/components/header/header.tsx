@@ -13,18 +13,20 @@ function Header(props: HeaderProps): JSX.Element {
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
-          <Logo />
+          <div className="header__left">
+            <Logo />
+          </div>
           <nav className="header__nav">
             <ul className="header__nav-list">
               {
                 authStatus === AuthorizationStatus.Auth ?
                   <>
                     <li className="header__nav-item user">
-                      <a className="header__nav-link header__nav-link--profile" href="/#">
+                      <Link className="header__nav-link header__nav-link--profile" to={'/favorite'} >
                         <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                         <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
                         <span className="header__favorite-count">3</span>
-                      </a>
+                      </Link>
                     </li>
                     <li className="header__nav-item">
                       <Link className="header__nav-link" to="/">

@@ -10,3 +10,20 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown ='UNKNOWN',
 }
+
+export const Housing: { [key:string]: string } = {
+  apartment: 'Apartment',
+  room: 'Private Room',
+  house: 'House',
+  hotel: 'Hotel',
+};
+
+export const Cities: string[] = [
+  'Paris',
+  'Cologne',
+  'Brussels',
+  'Amsterdam',
+  'Hamburg',
+  'Dusseldorf',
+];
+

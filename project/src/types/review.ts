@@ -1,7 +1,9 @@
+import {UserType} from './user';
+
 export type ReviewType = {
   id: number,
-  user: number,
+  user: UserType,
   rating: number,
-  text: string,
+  comment: string,
   date: string,
 }
