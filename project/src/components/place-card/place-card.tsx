@@ -2,6 +2,7 @@ import type {OfferType} from '../../types/offer';
 import {Housing} from '../../const';
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
+import {calculateRatingRound} from '../../utils';
 
 type PlaceCardProps = {
   offer: OfferType;
@@ -10,7 +11,7 @@ type PlaceCardProps = {
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
   const {offer, isNear } = props;
-  const rating = `${(Math.round(offer.rating) * 100 / 5).toString()}%`;
+  const rating = calculateRatingRound(offer.rating);
   const [activeOfferId, setActiveOfferId] = useState<number>();
 
   return (

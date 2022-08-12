@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import type {ReviewType} from '../../types/review';
+import {calculateRating} from '../../utils';
 
 type ReviewProps = {
   reviews: ReviewType[];
@@ -13,7 +14,7 @@ function Reviews(props: ReviewProps): JSX.Element {
     <ul className="reviews__list">
       {
         reviews.map((review) =>{
-          const reviewRating = `${(review.rating * 100 / 5).toString()}%`;
+          const reviewRating = calculateRating(review.rating);
           return (
             <li className="reviews__item" key={review.id}>
               <div className="reviews__user user">
