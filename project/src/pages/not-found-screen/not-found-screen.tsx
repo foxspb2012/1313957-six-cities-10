@@ -2,11 +2,11 @@ function NotFoundScreen(): JSX.Element {
   return (
     <main className="page__main page__main--index">
       <section className="container not-found">
-        <img className="property__image" style = {{marginTop: 150}} src="img/error.png" width={796} height={548} alt="Error 404" />
+        <img className="property__image" style = {{marginTop: 150}} src="img/error-400.png" width={796} height={548} alt="Error 404" />
         <div style = {{textAlign: 'center'}}>
-          <h1>Страница не&nbsp;найдена</h1>
+          <h1>Page not&nbsp;found</h1>
           <p style ={{ maxWidth: 600, margin: '0 auto 40px', fontSize: 18, lineHeight: 1.4}}>
-            Возможно она была, но&nbsp;сейчас также отправилась в путешествие.
+            Most likely there was a page, but&nbsp;now it has also gone on a journey.
           </p>
           <a style = {
             { display: 'inline-block',
@@ -16,10 +16,11 @@ function NotFoundScreen(): JSX.Element {
               fontWeight: 'bold',
               padding: '15px 20px',
               color: '#ffffff',
-              backgroundColor: '#4481c3'}
+              backgroundColor: '#4481c3',
+              borderRadius: 5}
           } href="/"
           >
-            Вернуться на главную
+            Back to main page
           </a>
         </div>
       </section>
