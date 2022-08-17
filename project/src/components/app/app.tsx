@@ -1,5 +1,6 @@
 import type {OfferType} from '../../types/offer';
 import type {ReviewType} from '../../types/review';
+import type {CityType} from '../../types/city';
 import MainScreen from '../../pages/main-screen/main-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import OfferScreen from '../../pages/offer-screen/offer-screen';
@@ -13,7 +14,7 @@ import {AppRoute, AuthorizationStatus} from '../../const';
 type AppScreenProps = {
   offers: OfferType[];
   reviews: ReviewType[];
-  cities: string[];
+  cities: CityType[];
 }
 
 function App(props: AppScreenProps): JSX.Element {

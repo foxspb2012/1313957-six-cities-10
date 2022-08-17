@@ -1,13 +1,14 @@
+import type {CityType} from '../../types/city';
+import type {OfferType} from '../../types/offer';
 import Header from '../../components/header/header';
 import MainCities from '../../components/main-cities/main-cities';
 import MainEmpty from '../../components/main-empty/main-empty';
 import {AuthorizationStatus} from '../../const';
-import {OfferType} from '../../types/offer';
 
 type MainPageProps = {
   offers: OfferType[];
   authStatus: AuthorizationStatus;
-  cities: string[];
+  cities: CityType[];
 }
 
 function MainScreen({offers, authStatus, cities}: MainPageProps): JSX.Element {
@@ -24,9 +25,9 @@ function MainScreen({offers, authStatus, cities}: MainPageProps): JSX.Element {
               {
                 cities.map((city, index) =>
                   (
-                    <li className="locations__item" key={city}>
+                    <li className="locations__item" key={city.id}>
                       <a className={`locations__item-link tabs__item ${index === 0 ? 'tabs__item--active' : ''}`} href="/#">
-                        <span>{city}</span>
+                        <span>{city.name}</span>
                       </a>
                     </li>
                   )
@@ -36,7 +37,7 @@ function MainScreen({offers, authStatus, cities}: MainPageProps): JSX.Element {
           </section>
         </div>
         {hasOffers ?
-          <MainCities offers={offers}/>
+          <MainCities offers={offers} cities={cities}/>
           : <MainEmpty/>}
       </main>
     </div>
