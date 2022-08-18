@@ -18,12 +18,4 @@ export const Housing: { [key:string]: string } = {
   hotel: 'Hotel',
 };
 
-export const Cities: string[] = [
-  'Paris',
-  'Cologne',
-  'Brussels',
-  'Amsterdam',
-  'Hamburg',
-  'Dusseldorf',
-];
 
