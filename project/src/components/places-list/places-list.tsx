@@ -1,18 +1,18 @@
-import type {OfferType} from '../../types/offer';
+import type {HotelType} from '../../types/hotel';
 import PlaceCard from '../place-card/place-card';
 
 type PlacesListProps = {
-  offers: OfferType[];
+  hotels: HotelType[];
 }
 
-function PlacesList({offers}: PlacesListProps): JSX.Element {
+function PlacesList({hotels}: PlacesListProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
       {
-        offers.map((offer) => (
+        hotels.map((hotel) => (
           <PlaceCard
-            key={offer.id}
-            offer={offer}
+            key={hotel.id}
+            hotel={hotel}
             isNear
           />
         ))

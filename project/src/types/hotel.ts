@@ -1,12 +1,7 @@
-export type OfferType = {
-  city: {
-    location: {
-      latitude: number,
-      longitude: number,
-      zoom: number,
-    }
-    name: string,
-  }
+import type {CityType} from './city';
+
+export type HotelType = {
+  city: CityType,
   previewImage: string,
   images: string[],
   title: string,

@@ -1,25 +1,25 @@
-import type {CityType} from '../../types/city';
-import type {OfferType} from '../../types/offer';
+import type {HotelType} from '../../types/hotel';
 import PlacesList from '../places-list/places-list';
 import Map from '../../components/map/map';
 
 type MainCitiesProps = {
-  offers: OfferType[];
-  cities: CityType[];
+  hotels: HotelType[];
+  cities: string[];
 }
 
-const CITY_ID = 4;
+const CITY_NAME = 'Amsterdam';
 
-function MainCities({offers, cities}: MainCitiesProps): JSX.Element {
+function MainCities({hotels, cities}: MainCitiesProps): JSX.Element {
 
-  const currentCity = cities.find((city) => city.id === CITY_ID) as CityType;
+  const currentCity = cities.find((city) => city === CITY_NAME) as string;
+  const filteredHotels = hotels.filter((hotel) => hotel.city.name === currentCity) as HotelType[];
 
   return (
     <div className="cities">
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{offers.length} places to stay in {currentCity.name}</b>
+          <b className="places__found">{hotels.length} places to stay in {currentCity}</b>
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex={0}>
@@ -43,11 +43,11 @@ function MainCities({offers, cities}: MainCitiesProps): JSX.Element {
               </li>
             </ul>
           </form>
-          <PlacesList offers={offers}/>
+          <PlacesList hotels={filteredHotels}/>
         </section>
         <div className="cities__right-section">
           <section style={{ width: '100%' }} >
-            <Map city={currentCity} offers={offers}/>
+            <Map hotels={filteredHotels}/>
           </section>
         </div>
       </div>

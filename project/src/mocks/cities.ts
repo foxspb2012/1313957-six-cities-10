@@ -2,7 +2,6 @@ import type {CityType} from '../types/city';
 
 export const cities: CityType[] = [
   {
-    id: 1,
     name: 'Paris',
     location: {
       latitude: 48.864716,
@@ -11,7 +10,6 @@ export const cities: CityType[] = [
     }
   },
   {
-    id: 2,
     name: 'Cologne',
     location: {
       latitude: 50.935173,
@@ -20,7 +18,6 @@ export const cities: CityType[] = [
     }
   },
   {
-    id: 3,
     name: 'Brussels',
     location: {
       latitude: 50.850346,
@@ -29,7 +26,6 @@ export const cities: CityType[] = [
     }
   },
   {
-    id: 4,
     name: 'Amsterdam',
     location: {
       latitude: 52.377956,
@@ -38,7 +34,6 @@ export const cities: CityType[] = [
     }
   },
   {
-    id: 5,
     name: 'Hamburg',
     location: {
       latitude: 53.551086,
@@ -47,7 +42,6 @@ export const cities: CityType[] = [
     }
   },
   {
-    id: 6,
     name: 'Dusseldorf',
     location: {
       latitude: 51.233334,

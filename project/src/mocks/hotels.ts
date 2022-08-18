@@ -1,13 +1,13 @@
-import {OfferType} from '../types/offer';
+import {HotelType} from '../types/hotel';
 
-export const offers: OfferType[] = [
+export const hotels: HotelType[] = [
   {
     city: {
       name: 'Amsterdam',
       location: {
-        latitude: 52.3909553943508,
-        longitude: 4.85309666406198,
-        zoom: 13
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 13,
       }
     },
     previewImage: 'https://10.react.pages.academy/static/hotel/18.jpg',
@@ -60,9 +60,9 @@ export const offers: OfferType[] = [
     city: {
       name: 'Amsterdam',
       location: {
-        latitude: 52.369553943508,
-        longitude: 4.85309666406198,
-        zoom: 13
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 13,
       }
     },
     previewImage: 'https://10.react.pages.academy/static/hotel/19.jpg',
@@ -113,9 +113,9 @@ export const offers: OfferType[] = [
     city: {
       name: 'Amsterdam',
       location: {
-        latitude: 52.3909553943508,
-        longitude: 4.929309666406198,
-        zoom: 13
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 13,
       }
     },
     previewImage: 'https://10.react.pages.academy/static/hotel/6.jpg',
@@ -172,9 +172,9 @@ export const offers: OfferType[] = [
     city: {
       name: 'Amsterdam',
       location: {
-        latitude: 52.3809553943508,
-        longitude: 4.939309666406198,
-        zoom: 13
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 13,
       }
     },
     previewImage: 'https://10.react.pages.academy/static/hotel/4.jpg',
