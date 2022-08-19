@@ -1,9 +1,9 @@
-import type {HotelType} from '../../types/hotel';
+import type {Hotel} from '../../types/hotel';
 import {calculateRatingRound} from '../../utils';
 import {Link} from 'react-router-dom';
 
 type FavoriteCardProps = {
-  hotel: HotelType;
+  hotel: Hotel;
 };
 
 function FavoriteCard({hotel}: FavoriteCardProps): JSX.Element {

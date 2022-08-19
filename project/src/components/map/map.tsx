@@ -1,11 +1,11 @@
-import type {HotelType} from '../../types/hotel';
+import type {Hotel} from '../../types/hotel';
 import {useRef, useEffect} from 'react';
 import useMap from './useMap';
 import {Icon, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 type CityMapProps = {
-  hotels: HotelType[];
+  hotels: Hotel[];
 }
 
 function Map({hotels}: CityMapProps): JSX.Element {

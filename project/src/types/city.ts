@@ -1,4 +1,4 @@
-export type CityType = {
+export type City = {
   name: string;
   location: {
     latitude: number;

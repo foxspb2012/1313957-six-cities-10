@@ -1,14 +1,17 @@
 import dayjs from 'dayjs';
-import type {CommentType} from '../../types/comment';
+import type {Comment} from '../../types/comment';
 import {calculateRating} from '../../utils';
 
 type ReviewProps = {
-  comments: CommentType[];
+  comments: Comment[];
 }
 
 function Comments(props: ReviewProps): JSX.Element {
-
   const {comments} = props;
+
+  const commentDate = (date: string) => (
+    dayjs(date).format('MMMM YYYY')
+  );
 
   return (
     <ul className="reviews__list">
@@ -34,7 +37,9 @@ function Comments(props: ReviewProps): JSX.Element {
                   {comment.comment}
                 </p>
                 <time className="reviews__time" dateTime={comment.date}>
-                  {dayjs(comment.date).format('MMMM YYYY')}
+                  {
+                    commentDate(comment.date)
+                  }
                 </time>
               </div>
             </li>);

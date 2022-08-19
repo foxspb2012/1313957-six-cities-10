@@ -1,5 +1,5 @@
-import type {HotelType} from '../../types/hotel';
-import type {CommentType} from '../../types/comment';
+import type {Hotel} from '../../types/hotel';
+import type {Comment} from '../../types/comment';
 import MainScreen from '../../pages/main-screen/main-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import OfferScreen from '../../pages/offer-screen/offer-screen';
@@ -11,8 +11,8 @@ import {ScrollToTop} from '../../utils';
 import {AppRoute, AuthorizationStatus} from '../../const';
 
 type AppScreenProps = {
-  hotels: HotelType[];
-  comments: CommentType[];
+  hotels: Hotel[];
+  comments: Comment[];
   cities: string[];
 }
 

@@ -1,18 +1,18 @@
-import type {HotelType} from '../../types/hotel';
+import type {Hotel} from '../../types/hotel';
 import PlacesList from '../places-list/places-list';
 import Map from '../../components/map/map';
 
 type MainCitiesProps = {
-  hotels: HotelType[];
+  hotels: Hotel[];
   cities: string[];
 }
 
 const CITY_NAME = 'Amsterdam';
 
 function MainCities({hotels, cities}: MainCitiesProps): JSX.Element {
+  const currentCity = cities.find((city) => city === CITY_NAME);
 
-  const currentCity = cities.find((city) => city === CITY_NAME) as string;
-  const filteredHotels = hotels.filter((hotel) => hotel.city.name === currentCity) as HotelType[];
+  const filteredHotels = hotels.filter((hotel) => hotel.city.name === currentCity) as Hotel[];
 
   return (
     <div className="cities">

@@ -1,8 +1,8 @@
-import type {HotelType} from '../../types/hotel';
+import type {Hotel} from '../../types/hotel';
 import PlaceCard from '../place-card/place-card';
 
 type PlacesListProps = {
-  hotels: HotelType[];
+  hotels: Hotel[];
 }
 
 function PlacesList({hotels}: PlacesListProps): JSX.Element {

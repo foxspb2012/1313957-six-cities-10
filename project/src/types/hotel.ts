@@ -1,7 +1,7 @@
-import type {CityType} from './city';
+import type {City} from './city';
 
-export type HotelType = {
-  city: CityType,
+export type Hotel = {
+  city: City,
   previewImage: string,
   images: string[],
   title: string,

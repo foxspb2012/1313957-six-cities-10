@@ -1,14 +1,20 @@
-import type {HotelType} from '../../types/hotel';
+import type {Hotel} from '../../types/hotel';
 import FavoriteCard from '../favorite-card/favorite-card';
 
 type FavoriteItemProps = {
   city: string;
-  favorites: HotelType[];
+  favorites: Hotel[];
 }
 
-function FavoriteItem(props: FavoriteItemProps) : JSX.Element {
+function FavoriteItem(props: FavoriteItemProps): JSX.Element {
   const {favorites, city} = props;
-  const places = favorites.filter((hotel) => hotel.city.name === city);
+
+  const favoriteCard = () =>
+    favorites.filter((hotel) =>
+      hotel.city.name === city).map((hotel) =>
+      (
+        <FavoriteCard key={hotel.id} hotel={hotel}/>
+      ));
 
   return (
     <li className="favorites__locations-items">
@@ -21,9 +27,7 @@ function FavoriteItem(props: FavoriteItemProps) : JSX.Element {
       </div>
       <div className="favorites__places">
         {
-          places.map((hotel) => (
-            <FavoriteCard key={hotel.id} hotel={hotel} />
-          ))
+          favoriteCard()
         }
       </div>
     </li>

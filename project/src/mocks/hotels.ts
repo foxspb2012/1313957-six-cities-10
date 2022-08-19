@@ -1,6 +1,6 @@
-import {HotelType} from '../types/hotel';
+import {Hotel} from '../types/hotel';
 
-export const hotels: HotelType[] = [
+export const hotels: Hotel[] = [
   {
     city: {
       name: 'Amsterdam',
@@ -28,7 +28,7 @@ export const hotels: HotelType[] = [
       'https://10.react.pages.academy/static/hotel/19.jpg'
     ],
     title: 'Penthouse, 4-5 rooms + 5 balconies',
-    isFavorite: false,
+    isFavorite: true,
     isPremium: false,
     rating: 4.1,
     type: 'hotel',
@@ -84,7 +84,7 @@ export const hotels: HotelType[] = [
     ],
     title: 'Nice, cozy, warm big bed apartment',
     isFavorite: false,
-    isPremium: false,
+    isPremium: true,
     rating: 3.3,
     type: 'house',
     bedrooms: 2,

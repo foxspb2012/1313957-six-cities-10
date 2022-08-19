@@ -27,4 +27,5 @@ export const Cities: string[] = [
   'Dusseldorf',
 ];
 
+export const MAX_IMG_COUNT = 6;
 
