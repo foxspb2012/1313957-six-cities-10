@@ -1,5 +1,4 @@
-export type CityType = {
-  id: number;
+export type City = {
   name: string;
   location: {
     latitude: number;

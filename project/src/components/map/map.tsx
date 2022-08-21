@@ -1,22 +1,21 @@
-import type {CityType} from '../../types/city';
-import type {OfferType} from '../../types/offer';
+import type {Hotel} from '../../types/hotel';
 import {useRef, useEffect} from 'react';
 import useMap from './useMap';
 import {Icon, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 type CityMapProps = {
-  offers: OfferType[];
-  city: CityType;
+  hotels: Hotel[];
 }
 
-function Map({offers, city}: CityMapProps): JSX.Element {
+function Map({hotels}: CityMapProps): JSX.Element {
+
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city);
+  const map = useMap(mapRef, hotels[0].city);
 
   useEffect(() => {
     if (map) {
-      offers.forEach((offer) => {
+      hotels.forEach((hotel) => {
         const defaultCustomIcon = new Icon({
           iconUrl: 'img/pin.svg',
           iconSize: [20, 30],
@@ -24,8 +23,8 @@ function Map({offers, city}: CityMapProps): JSX.Element {
         });
 
         const marker = new Marker({
-          lat: offer.location.latitude,
-          lng: offer.location.longitude
+          lat: hotel.location.latitude,
+          lng: hotel.location.longitude
         });
 
         marker
@@ -33,7 +32,7 @@ function Map({offers, city}: CityMapProps): JSX.Element {
           .addTo(map);
       });
     }
-  }, [map, offers]);
+  }, [map, hotels]);
 
   return (
     <div

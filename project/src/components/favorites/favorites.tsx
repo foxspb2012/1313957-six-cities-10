@@ -1,20 +1,22 @@
-import {OfferType} from '../../types/offer';
+import {Hotel} from '../../types/hotel';
 import FavoriteItem from '../favorite-item/favorite-item';
 
 type FavoritesProps = {
   cities: string[];
-  offers: OfferType[];
+  favorites: Hotel[];
 }
 
-function Favorites({cities, offers}: FavoritesProps): JSX.Element {
+function Favorites({cities, favorites}: FavoritesProps): JSX.Element {
+  const favoriteItems = () => cities.map((city) => (
+    <FavoriteItem key={city} city={city} favorites={favorites}/>
+  ));
+
   return (
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
       <ul className="favorites__list">
         {
-          cities.map((city) => (
-            <FavoriteItem key={city} city={city} offers={offers} />
-          ))
+          favoriteItems()
         }
       </ul>
     </section>

@@ -1,6 +1,6 @@
-import {ReviewType} from '../types/review';
+import {Comment} from '../types/comment';
 
-export const reviews: ReviewType[] = [
+export const comments: Comment[] = [
   {
     id: 1,
     user: {

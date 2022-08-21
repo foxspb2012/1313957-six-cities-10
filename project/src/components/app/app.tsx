@@ -1,6 +1,5 @@
-import type {OfferType} from '../../types/offer';
-import type {ReviewType} from '../../types/review';
-import type {CityType} from '../../types/city';
+import type {Hotel} from '../../types/hotel';
+import type {Comment} from '../../types/comment';
 import MainScreen from '../../pages/main-screen/main-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import OfferScreen from '../../pages/offer-screen/offer-screen';
@@ -12,13 +11,13 @@ import {ScrollToTop} from '../../utils';
 import {AppRoute, AuthorizationStatus} from '../../const';
 
 type AppScreenProps = {
-  offers: OfferType[];
-  reviews: ReviewType[];
-  cities: CityType[];
+  hotels: Hotel[];
+  comments: Comment[];
+  cities: string[];
 }
 
 function App(props: AppScreenProps): JSX.Element {
-  const {offers, reviews, cities} = props;
+  const {hotels, comments, cities} = props;
 
   return (
     <BrowserRouter>
@@ -26,7 +25,7 @@ function App(props: AppScreenProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainScreen offers={offers} cities={cities} authStatus={AuthorizationStatus.Auth} />}
+          element={<MainScreen hotels={hotels} cities={cities} authStatus={AuthorizationStatus.Auth} />}
         />
         <Route
           path={AppRoute.Login}
@@ -35,14 +34,14 @@ function App(props: AppScreenProps): JSX.Element {
         <Route
           path={AppRoute.Room}
           element={
-            <OfferScreen offers={offers} reviews={reviews} authStatus={AuthorizationStatus.Auth} />
+            <OfferScreen hotels={hotels} comments={comments} authStatus={AuthorizationStatus.Auth} />
           }
         />
         <Route
           path={'/favorite'}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth} >
-              <FavoriteScreen offers={offers} authStatus={AuthorizationStatus.Auth} />
+              <FavoriteScreen favorites={hotels} authStatus={AuthorizationStatus.Auth} />
             </PrivateRoute>
           }
         />

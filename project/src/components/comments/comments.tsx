@@ -1,27 +1,30 @@
 import dayjs from 'dayjs';
-import type {ReviewType} from '../../types/review';
+import type {Comment} from '../../types/comment';
 import {calculateRating} from '../../utils';
 
 type ReviewProps = {
-  reviews: ReviewType[];
+  comments: Comment[];
 }
 
-function Reviews(props: ReviewProps): JSX.Element {
+function Comments(props: ReviewProps): JSX.Element {
+  const {comments} = props;
 
-  const {reviews} = props;
+  const commentDate = (date: string) => (
+    dayjs(date).format('MMMM YYYY')
+  );
 
   return (
     <ul className="reviews__list">
       {
-        reviews.map((review) =>{
-          const reviewRating = calculateRating(review.rating);
+        comments.map((comment) =>{
+          const reviewRating = calculateRating(comment.rating);
           return (
-            <li className="reviews__item" key={review.id}>
+            <li className="reviews__item" key={comment.id}>
               <div className="reviews__user user">
                 <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                  <img className="reviews__avatar user__avatar" src={`${review.user.avatarUrl}`} width={54} height={54} alt="Reviews avatar"/>
+                  <img className="reviews__avatar user__avatar" src={`${comment.user.avatarUrl}`} width={54} height={54} alt="Comments avatar"/>
                 </div>
-                <span className="reviews__user-name">{review.user.name}</span>
+                <span className="reviews__user-name">{comment.user.name}</span>
               </div>
               <div className="reviews__info">
                 <div className="reviews__rating rating">
@@ -31,10 +34,12 @@ function Reviews(props: ReviewProps): JSX.Element {
                   </div>
                 </div>
                 <p className="reviews__text">
-                  {review.comment}
+                  {comment.comment}
                 </p>
-                <time className="reviews__time" dateTime={review.date}>
-                  {dayjs(review.date).format('MMMM YYYY')}
+                <time className="reviews__time" dateTime={comment.date}>
+                  {
+                    commentDate(comment.date)
+                  }
                 </time>
               </div>
             </li>);
@@ -45,4 +50,4 @@ function Reviews(props: ReviewProps): JSX.Element {
   );
 }
 
-export default Reviews;
+export default Comments;

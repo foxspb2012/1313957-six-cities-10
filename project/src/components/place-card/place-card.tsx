@@ -1,39 +1,51 @@
-import type {OfferType} from '../../types/offer';
+import type {Hotel} from '../../types/hotel';
 import {Housing} from '../../const';
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {calculateRatingRound} from '../../utils';
 
 type PlaceCardProps = {
-  offer: OfferType;
+  hotel: Hotel;
   isNear: boolean;
 };
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
-  const {offer, isNear } = props;
-  const rating = calculateRatingRound(offer.rating);
+  const {hotel, isNear} = props;
+
+  const rating = calculateRatingRound(hotel.rating);
+
   const [activeOfferId, setActiveOfferId] = useState<number>();
 
+  const articleClass = () => `${isNear ? 'near-places__card' : 'cities__card'} place-card`;
+
+  const markPremium = (isPremium: boolean) => (
+    isPremium &&
+    <div className="place-card__mark">
+      <span>Premium</span>
+    </div>
+  );
+
+  const buttonClass = (isFavorite: boolean) => `place-card__bookmark-button ${isFavorite ? 'place-card__bookmark-button--active' : ''} button`;
+
   return (
-    <article onMouseOver={() => setActiveOfferId(offer.id)} className={`${isNear ? 'near-places__card' : 'cities__card'} place-card`}>
-      {offer.isPremium ?
-        <div className ="place-card__mark">
-          <span>Premium</span>
-        </div>
-        : ''}
-      <div style={{ display: 'none' }}>{activeOfferId}</div>
+    <article onMouseOver={() => setActiveOfferId(hotel.id)} className={articleClass()}>
+      {markPremium(hotel.isPremium)}
+      <div style={{display: 'none'}}>{activeOfferId}</div>
       <div className={`${isNear ? 'near-places__image-wrapper' : 'cities__image-wrapper'} place-card__image-wrapper`}>
-        <Link to={`/offer/${offer.id}`}>
-          <img className="place-card__image" src={`${offer.previewImage}`} width={260} height={200} alt="Place pic"/>
+        <Link to={`/offer/${hotel.id}`}>
+          <img className="place-card__image" src={`${hotel.previewImage}`} width={260} height={200} alt="Place pic"/>
         </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">€{offer.price}</b>
+            <b className="place-card__price-value">€{hotel.price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button ${offer.isFavorite ? 'place-card__bookmark-button--active' : ''} button`} type="button">
+          <button
+            className={buttonClass(hotel.isFavorite)}
+            type="button"
+          >
             <svg
               className="place-card__bookmark-icon"
               width={18}
@@ -52,9 +64,9 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         </div>
         <h2 className="place-card__name">
           <link href="#"/>
-          {offer.title}
+          {hotel.title}
         </h2>
-        <p className="place-card__type">{Housing[offer.type]}</p>
+        <p className="place-card__type">{Housing[hotel.type]}</p>
       </div>
     </article>
   );

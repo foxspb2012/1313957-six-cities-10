@@ -1,25 +1,25 @@
-import type {OfferType} from '../../types/offer';
+import type {Hotel} from '../../types/hotel';
 import {calculateRatingRound} from '../../utils';
 import {Link} from 'react-router-dom';
 
 type FavoriteCardProps = {
-  offer: OfferType
+  hotel: Hotel;
 };
 
-function FavoriteCard({offer}: FavoriteCardProps): JSX.Element {
-  const rating = calculateRatingRound(offer.rating);
+function FavoriteCard({hotel}: FavoriteCardProps): JSX.Element {
+  const rating = calculateRatingRound(hotel.rating);
 
   return (
     <article className="favorites__card place-card">
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <Link to={`/offer/${offer.id}`}>
-          <img className="place-card__image" src={`${offer.previewImage}`} width={150} height={110} alt="Place pic"/>
+        <Link to={`/offer/${hotel.id}`}>
+          <img className="place-card__image" src={`${hotel.previewImage}`} width={150} height={110} alt="Place pic"/>
         </Link>
       </div>
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">€{offer.price}</b>
+            <b className="place-card__price-value">€{hotel.price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
@@ -36,9 +36,9 @@ function FavoriteCard({offer}: FavoriteCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
+          <Link to={`/offer/${hotel.id}`}>{hotel.title}</Link>
         </h2>
-        <p className="place-card__type">{offer.type}</p>
+        <p className="place-card__type">{hotel.type}</p>
       </div>
     </article>
   );
