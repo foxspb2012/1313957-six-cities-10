@@ -1,6 +1,7 @@
 import {useState, ChangeEvent} from 'react';
 
 function CommentsForm(): JSX.Element {
+
   const [formData, setFormData] = useState({
     rating: 0,
     review: '',

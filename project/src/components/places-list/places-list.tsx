@@ -6,6 +6,7 @@ type PlacesListProps = {
 }
 
 function PlacesList({hotels}: PlacesListProps): JSX.Element {
+
   return (
     <div className="cities__places-list places__list tabs__content">
       {

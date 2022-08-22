@@ -18,10 +18,9 @@ type OfferNotLoggedProps = {
   authStatus: AuthorizationStatus;
 }
 
-function OfferScreen(props: OfferNotLoggedProps): JSX.Element {
-  const {id} = useParams();
+function OfferScreen({hotels, comments, authStatus}: OfferNotLoggedProps): JSX.Element {
 
-  const {hotels, comments, authStatus} = props;
+  const {id} = useParams();
 
   const hotel = hotels.find((item) => item.id === Number(id));
 

@@ -17,6 +17,7 @@ type AppScreenProps = {
 }
 
 function App(props: AppScreenProps): JSX.Element {
+
   const {hotels, comments, cities} = props;
 
   return (

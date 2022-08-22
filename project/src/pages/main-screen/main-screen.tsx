@@ -3,6 +3,7 @@ import Header from '../../components/header/header';
 import MainCities from '../../components/main-cities/main-cities';
 import MainEmpty from '../../components/main-empty/main-empty';
 import {AuthorizationStatus} from '../../const';
+import classNames from 'classnames';
 
 type MainPageProps = {
   hotels: Hotel[];
@@ -14,7 +15,7 @@ function MainScreen({hotels, authStatus, cities}: MainPageProps): JSX.Element {
 
   const hasHotels = Boolean(hotels.length > 0);
 
-  const mainClass = () => `page__main page__main--index ${hasHotels ? 'page__main--index-empty' : ''}`;
+  const mainClass = classNames('page__main', 'page__main--index', {'page__main--index-empty': hasHotels});
 
   const citiesList = () => (
     cities.map((city, index) =>
@@ -38,7 +39,7 @@ function MainScreen({hotels, authStatus, cities}: MainPageProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Header authStatus={authStatus}/>
-      <main className={mainClass()}>
+      <main className={mainClass}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">

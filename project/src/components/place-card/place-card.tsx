@@ -3,20 +3,22 @@ import {Housing} from '../../const';
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {calculateRatingRound} from '../../utils';
+import classNames from 'classnames';
 
 type PlaceCardProps = {
   hotel: Hotel;
   isNear: boolean;
 };
 
-function PlaceCard(props: PlaceCardProps): JSX.Element {
-  const {hotel, isNear} = props;
+function PlaceCard({hotel, isNear}: PlaceCardProps): JSX.Element {
 
   const rating = calculateRatingRound(hotel.rating);
 
   const [activeOfferId, setActiveOfferId] = useState<number>();
 
-  const articleClass = () => `${isNear ? 'near-places__card' : 'cities__card'} place-card`;
+  const onArticleHover = () => setActiveOfferId(hotel.id);
+
+  const articleClass = classNames('place-card', {'near-places__card' : isNear, 'cities__card': !isNear} );
 
   const markPremium = (isPremium: boolean) => (
     isPremium &&
@@ -25,10 +27,10 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     </div>
   );
 
-  const buttonClass = (isFavorite: boolean) => `place-card__bookmark-button ${isFavorite ? 'place-card__bookmark-button--active' : ''} button`;
+  const buttonClass = classNames('place-card__bookmark-button', 'button', {'place-card__bookmark-button--active': hotel.isFavorite});
 
   return (
-    <article onMouseOver={() => setActiveOfferId(hotel.id)} className={articleClass()}>
+    <article onMouseOver={onArticleHover} className={articleClass}>
       {markPremium(hotel.isPremium)}
       <div style={{display: 'none'}}>{activeOfferId}</div>
       <div className={`${isNear ? 'near-places__image-wrapper' : 'cities__image-wrapper'} place-card__image-wrapper`}>
@@ -43,7 +45,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <button
-            className={buttonClass(hotel.isFavorite)}
+            className={buttonClass}
             type="button"
           >
             <svg

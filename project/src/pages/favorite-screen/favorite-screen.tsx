@@ -4,6 +4,7 @@ import Header from '../../components/header/header';
 import Favorites from '../../components/favorites/favorites';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
 import {AuthorizationStatus} from '../../const';
+import classNames from 'classnames';
 
 type FavoriteScreenType = {
   favorites: Hotel[];
@@ -11,6 +12,7 @@ type FavoriteScreenType = {
 }
 
 function FavoriteScreen({favorites, authStatus}: FavoriteScreenType): JSX.Element {
+
   const cities = favorites.map((item) => item.city.name)
     .reduce((acc: string[], item) => (acc.includes(item) ? acc : [...acc, item]), []).sort();
 
@@ -23,21 +25,21 @@ function FavoriteScreen({favorites, authStatus}: FavoriteScreenType): JSX.Elemen
       <FavoritesEmpty/>
   );
 
-  const pageClass = () => `page ${favoritesEmpty ? 'page--favorites-empty' : ''}`;
+  const pageClass = classNames('page', {'page--favorites-empty': favoritesEmpty});
 
-  const mainClass = () => `page__main page__main--favorites ${favoritesEmpty ? 'page__main--favorites-empty' : ''}`;
+  const mainClass = classNames('page__main page__main--favorites', {'page__main--favorites-empty': favoritesEmpty});
 
-  const footerClass = () => `footer ${favoritesEmpty ? '' : 'container'}`;
+  const footerClass = classNames('footer', {'container' : !favoritesEmpty});
 
   return (
-    <div className={pageClass()}>
+    <div className={pageClass}>
       <Header authStatus={authStatus}/>
-      <main className={mainClass()}>
+      <main className={mainClass}>
         <div className="page__favorites-container container">
           {favoriteContainer()}
         </div>
       </main>
-      <footer className={footerClass()}>
+      <footer className={footerClass}>
         <Logo/>
       </footer>
     </div>

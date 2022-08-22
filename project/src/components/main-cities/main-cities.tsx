@@ -10,9 +10,10 @@ type MainCitiesProps = {
 const CITY_NAME = 'Amsterdam';
 
 function MainCities({hotels, cities}: MainCitiesProps): JSX.Element {
+
   const currentCity = cities.find((city) => city === CITY_NAME);
 
-  const filteredHotels = hotels.filter((hotel) => hotel.city.name === currentCity) as Hotel[];
+  const filteredHotels = hotels.filter((hotel) => hotel.city.name === currentCity);
 
   return (
     <div className="cities">

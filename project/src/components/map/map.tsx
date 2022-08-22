@@ -11,6 +11,7 @@ type CityMapProps = {
 function Map({hotels}: CityMapProps): JSX.Element {
 
   const mapRef = useRef(null);
+
   const map = useMap(mapRef, hotels[0].city);
 
   useEffect(() => {

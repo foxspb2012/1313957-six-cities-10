@@ -6,8 +6,7 @@ type HeaderProps = {
   authStatus: AuthorizationStatus;
 }
 
-function Header(props: HeaderProps): JSX.Element {
-  const {authStatus} = props;
+function Header({authStatus}: HeaderProps): JSX.Element {
 
   const navigationList = (status: AuthorizationStatus): JSX.Element => (
     status === AuthorizationStatus.Auth ?

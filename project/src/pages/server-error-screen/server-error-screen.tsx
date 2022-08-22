@@ -1,6 +1,7 @@
 import {Link} from 'react-router-dom';
 
 function ServerErrorScreen(): JSX.Element {
+
   const refreshPage = () => {
     window.location.reload();
   };
