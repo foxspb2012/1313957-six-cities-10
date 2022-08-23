@@ -1,4 +1,4 @@
-import type {City} from '../../types/city';
+import type {City} from '../types/city';
 import {useEffect, useState, MutableRefObject, useRef} from 'react';
 import {Map, TileLayer} from 'leaflet';
 
@@ -28,7 +28,11 @@ function useMap(mapRef: MutableRefObject<HTMLElement | null>, city: City): Map |
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, city]);
+    map?.flyTo({
+      lat: city.location.latitude,
+      lng: city.location.longitude,
+    }, city.location.zoom);
+  }, [mapRef, city.location, map]);
 
   return map;
 }

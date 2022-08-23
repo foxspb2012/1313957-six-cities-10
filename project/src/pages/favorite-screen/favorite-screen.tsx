@@ -13,6 +13,8 @@ type FavoriteScreenType = {
 
 function FavoriteScreen({favorites, authStatus}: FavoriteScreenType): JSX.Element {
 
+  const favorite = true;
+
   const cities = favorites.map((item) => item.city.name)
     .reduce((acc: string[], item) => (acc.includes(item) ? acc : [...acc, item]), []).sort();
 
@@ -33,7 +35,7 @@ function FavoriteScreen({favorites, authStatus}: FavoriteScreenType): JSX.Elemen
 
   return (
     <div className={pageClass}>
-      <Header authStatus={authStatus}/>
+      <Header hotels={favorites} authStatus={authStatus} isFavorites={favorite}/>
       <main className={mainClass}>
         <div className="page__favorites-container container">
           {favoriteContainer()}

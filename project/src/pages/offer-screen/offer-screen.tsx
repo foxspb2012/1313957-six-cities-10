@@ -68,9 +68,11 @@ function OfferScreen({hotels, comments, authStatus}: OfferNotLoggedProps): JSX.E
     <span className="property__user-status">Pro</span>
   );
 
+  const commentsByOffer = comments.filter((comment) => hotel.reviews.includes(comment.id));
+
   const commentsList = (hasComments: boolean) => (
     hasComments &&
-    <Comments comments={comments}/>
+    <Comments comments={commentsByOffer}/>
   );
 
   const commentsForm = (isAuth: boolean) => (
@@ -86,7 +88,7 @@ function OfferScreen({hotels, comments, authStatus}: OfferNotLoggedProps): JSX.E
 
   return (
     <div className="page">
-      <Header authStatus={authStatus}/>
+      <Header hotels={hotels} authStatus={authStatus}/>
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
@@ -158,10 +160,10 @@ function OfferScreen({hotels, comments, authStatus}: OfferNotLoggedProps): JSX.E
               </div>
               <section className="property__reviews reviews">
                 <h2 className="reviews__title">
-                  Reviews · <span className="reviews__amount">{comments.length}</span>
+                  Reviews · <span className="reviews__amount">{commentsByOffer.length}</span>
                 </h2>
                 {
-                  commentsList(comments.length > 0)
+                  commentsList(commentsByOffer.length > 0)
                 }
                 {
                   commentsForm(authStatus === AuthorizationStatus.Auth)

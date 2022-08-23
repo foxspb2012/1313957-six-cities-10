@@ -54,7 +54,7 @@ export const hotels: Hotel[] = [
       zoom: 16
     },
     id: 1,
-    reviews: [1,4],
+    reviews: [1,3],
   },
   {
     city: {
@@ -107,7 +107,7 @@ export const hotels: Hotel[] = [
       zoom: 16
     },
     id: 2,
-    reviews: [2,4],
+    reviews: [2,3],
   },
   {
     city: {
@@ -166,7 +166,7 @@ export const hotels: Hotel[] = [
       zoom: 16
     },
     id: 3,
-    reviews: [2,3,4],
+    reviews: [1,2,3],
   },
   {
     city: {
@@ -226,6 +226,233 @@ export const hotels: Hotel[] = [
       zoom: 16
     },
     id: 4,
+    reviews: [3],
+  },
+  {
+    city: {
+      name: 'Cologne',
+      location: {
+        latitude: 50.938361,
+        longitude: 6.959974,
+        zoom: 13,
+      }
+    },
+    previewImage: 'https://8.react.pages.academy/static/hotel/9.jpg',
+    images: [
+      'https://8.react.pages.academy/static/hotel/6.jpg',
+      'https://8.react.pages.academy/static/hotel/17.jpg',
+      'https://8.react.pages.academy/static/hotel/5.jpg',
+      'https://8.react.pages.academy/static/hotel/14.jpg',
+      'https://8.react.pages.academy/static/hotel/12.jpg',
+      'https://8.react.pages.academy/static/hotel/4.jpg',
+      'https://8.react.pages.academy/static/hotel/16.jpg',
+      'https://8.react.pages.academy/static/hotel/11.jpg',
+      'https://8.react.pages.academy/static/hotel/7.jpg',
+      'https://8.react.pages.academy/static/hotel/18.jpg',
+      'https://8.react.pages.academy/static/hotel/2.jpg',
+      'https://8.react.pages.academy/static/hotel/20.jpg',
+      'https://8.react.pages.academy/static/hotel/1.jpg',
+      'https://8.react.pages.academy/static/hotel/10.jpg'
+    ],
+    title: 'Loft Studio in the Central Area',
+    isFavorite: false,
+    isPremium: false,
+    rating: 3,
+    type: 'apartment',
+    bedrooms: 3,
+    maxAdults: 9,
+    price: 104,
+    goods: [
+      'Laptop friendly workspace',
+      'Air conditioning',
+      'Baby seat',
+      'Washer',
+      'Breakfast'
+    ],
+    host: {
+      id: 25,
+      name: 'Angelina',
+      isPro: true,
+      avatarUrl: 'img/avatar-angelina.jpg'
+    },
+    description: 'Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.',
+    location: {
+      latitude: 50.959361,
+      longitude: 6.978974,
+      zoom: 16
+    },
+    id: 5,
+    reviews: [1, 2],
+  },
+  {
+    city: {
+      name: 'Dusseldorf',
+      location: {
+        latitude: 51.225402,
+        longitude: 6.776314,
+        zoom: 13
+      }
+    },
+    previewImage: 'https://8.react.pages.academy/static/hotel/4.jpg',
+    images: [
+      'https://8.react.pages.academy/static/hotel/18.jpg',
+      'https://8.react.pages.academy/static/hotel/4.jpg',
+      'https://8.react.pages.academy/static/hotel/10.jpg',
+      'https://8.react.pages.academy/static/hotel/15.jpg',
+      'https://8.react.pages.academy/static/hotel/6.jpg',
+      'https://8.react.pages.academy/static/hotel/11.jpg',
+      'https://8.react.pages.academy/static/hotel/2.jpg',
+      'https://8.react.pages.academy/static/hotel/14.jpg',
+      'https://8.react.pages.academy/static/hotel/17.jpg',
+      'https://8.react.pages.academy/static/hotel/20.jpg',
+      'https://8.react.pages.academy/static/hotel/13.jpg',
+      'https://8.react.pages.academy/static/hotel/7.jpg',
+      'https://8.react.pages.academy/static/hotel/12.jpg',
+      'https://8.react.pages.academy/static/hotel/3.jpg'
+    ],
+    title: 'Perfectly located Castro',
+    isFavorite: false,
+    isPremium: false,
+    rating: 3.5,
+    type: 'room',
+    bedrooms: 1,
+    maxAdults: 2,
+    price: 246,
+    goods: [
+      'Washer',
+      'Air conditioning',
+      'Laptop friendly workspace',
+      'Breakfast'
+    ],
+    host: {
+      id: 25,
+      name: 'Angelina',
+      isPro: true,
+      avatarUrl: 'img/avatar-angelina.jpg',
+    },
+    description: 'This is a place for dreamers to reset, reflect, and create. Designed with a low pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.',
+    location: {
+      latitude: 51.250402,
+      longitude: 6.7853140000000005,
+      zoom: 16
+    },
+    id: 6,
+    reviews: [1, 3],
+  },
+  {
+    city: {
+      name: 'Cologne',
+      location: {
+        latitude: 50.938361,
+        longitude: 6.959974,
+        zoom: 13
+      }
+    },
+    previewImage: 'https://8.react.pages.academy/static/hotel/5.jpg',
+    images: [
+      'https://8.react.pages.academy/static/hotel/5.jpg',
+      'https://8.react.pages.academy/static/hotel/10.jpg',
+      'https://8.react.pages.academy/static/hotel/1.jpg',
+      'https://8.react.pages.academy/static/hotel/14.jpg',
+      'https://8.react.pages.academy/static/hotel/15.jpg',
+      'https://8.react.pages.academy/static/hotel/19.jpg',
+      'https://8.react.pages.academy/static/hotel/7.jpg',
+      'https://8.react.pages.academy/static/hotel/3.jpg',
+      'https://8.react.pages.academy/static/hotel/4.jpg',
+      'https://8.react.pages.academy/static/hotel/17.jpg',
+      'https://8.react.pages.academy/static/hotel/12.jpg',
+      'https://8.react.pages.academy/static/hotel/11.jpg',
+      'https://8.react.pages.academy/static/hotel/6.jpg',
+      'https://8.react.pages.academy/static/hotel/2.jpg'
+    ],
+    title: 'The Joshua Tree House',
+    isFavorite: true,
+    isPremium: false,
+    rating: 3.4,
+    type: 'room',
+    bedrooms: 1,
+    maxAdults: 3,
+    price: 181,
+    goods: [
+      'Towels',
+      'Breakfast',
+      'Laptop friendly workspace',
+      'Washer',
+      'Fridge',
+      'Baby seat',
+      'Air conditioning'
+    ],
+    host: {
+      id: 25,
+      name: 'Angelina',
+      isPro: true,
+      avatarUrl: 'img/avatar-angelina.jpg'
+    },
+    description: 'A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.',
+    location: {
+      latitude: 50.918461,
+      longitude: 6.969974,
+      zoom: 16
+    },
+    id: 7,
+    reviews: [1, 2],
+  },
+  {
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13
+      }
+    },
+    previewImage: 'https://8.react.pages.academy/static/hotel/12.jpg',
+    images: [
+      'https://8.react.pages.academy/static/hotel/14.jpg',
+      'https://8.react.pages.academy/static/hotel/4.jpg',
+      'https://8.react.pages.academy/static/hotel/18.jpg',
+      'https://8.react.pages.academy/static/hotel/3.jpg',
+      'https://8.react.pages.academy/static/hotel/13.jpg',
+      'https://8.react.pages.academy/static/hotel/2.jpg',
+      'https://8.react.pages.academy/static/hotel/20.jpg',
+      'https://8.react.pages.academy/static/hotel/10.jpg',
+      'https://8.react.pages.academy/static/hotel/11.jpg',
+      'https://8.react.pages.academy/static/hotel/16.jpg',
+      'https://8.react.pages.academy/static/hotel/6.jpg',
+      'https://8.react.pages.academy/static/hotel/15.jpg',
+      'https://8.react.pages.academy/static/hotel/9.jpg',
+      'https://8.react.pages.academy/static/hotel/7.jpg'
+    ],
+    title: 'Amazing and Extremely Central Flat',
+    isFavorite: true,
+    isPremium: false,
+    rating: 2,
+    type: 'hotel',
+    bedrooms: 2,
+    maxAdults: 4,
+    price: 441,
+    goods: [
+      'Laptop friendly workspace',
+      'Towels',
+      'Air conditioning',
+      'Baby seat',
+      'Breakfast',
+      'Washer',
+      'Fridge'
+    ],
+    host: {
+      id: 25,
+      name: 'Angelina',
+      isPro: true,
+      avatarUrl: 'img/avatar-angelina.jpg'
+    },
+    description: 'Relax, rejuvenate and unplug in this ultimate rustic getaway experience in the country. In our beautiful screened Pondhouse, you can gaze at the stars and listen to the sounds of nature from your cozy warm bed.',
+    location: {
+      latitude: 48.83961,
+      longitude: 2.342499,
+      zoom: 16
+    },
+    id: 8,
     reviews: [3],
   },
 ];

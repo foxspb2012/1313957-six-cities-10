@@ -1,6 +1,6 @@
 export enum AppRoute {
+  Main = '/',
   Login = '/login',
-  Root = '/',
   Favorites = '/favorites',
   Room = 'offer/:id'
 }
@@ -28,4 +28,6 @@ export const Cities: string[] = [
 ];
 
 export const MAX_IMG_COUNT = 6;
+
+export const DEFAULT_CITY = 'Paris';
 

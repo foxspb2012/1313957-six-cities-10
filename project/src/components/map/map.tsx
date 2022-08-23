@@ -1,6 +1,6 @@
 import type {Hotel} from '../../types/hotel';
 import {useRef, useEffect} from 'react';
-import useMap from './useMap';
+import useMap from '../../hooks/useMap';
 import {Icon, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
