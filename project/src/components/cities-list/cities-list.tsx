@@ -1,4 +1,6 @@
 import CityItem from '../city-item/city-item';
+import {useAppDispatch} from '../../hooks';
+import {changeCity, getHotels} from '../../store/action';
 
 type CitiesListProps = {
   cities: string[];
@@ -6,6 +8,13 @@ type CitiesListProps = {
 }
 
 function CitiesList({currentCity, cities}: CitiesListProps): JSX.Element {
+
+  const dispatch = useAppDispatch();
+
+  const onCityClick = (city: string) => {
+    dispatch(changeCity(city));
+    dispatch(getHotels());
+  };
 
   return (
     <>
@@ -15,7 +24,7 @@ function CitiesList({currentCity, cities}: CitiesListProps): JSX.Element {
           <ul className="locations__list tabs__list">
             {
               cities.map((city) =>
-                <CityItem key={city} cityItem={city} currentCity={currentCity} />
+                <CityItem key={city} cityItem={city} currentCity={currentCity} onClick={onCityClick}/>
               )
             }
           </ul>

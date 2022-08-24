@@ -1,5 +1,4 @@
 import type {Hotel} from '../../types/hotel';
-import Logo from '../logo/logo';
 import {Link} from 'react-router-dom';
 import {AuthorizationStatus} from '../../const';
 
@@ -45,7 +44,9 @@ function Header({hotels, authStatus, isFavorites = false}: HeaderProps): JSX.Ele
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <Logo/>
+            <Link className="header__logo-link" to="/">
+              <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
+            </Link>
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">

@@ -1,28 +1,24 @@
-import type {Hotel} from '../../types/hotel';
-import Logo from '../../components/logo/logo';
 import Header from '../../components/header/header';
 import Favorites from '../../components/favorites/favorites';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
+import Footer from '../../components/footer/footer';
 import {AuthorizationStatus} from '../../const';
+import {hotels} from '../../mocks/hotels';
 import classNames from 'classnames';
 
 type FavoriteScreenType = {
-  favorites: Hotel[];
   authStatus: AuthorizationStatus;
 }
 
-function FavoriteScreen({favorites, authStatus}: FavoriteScreenType): JSX.Element {
+function FavoriteScreen({authStatus}: FavoriteScreenType): JSX.Element {
 
   const favorite = true;
 
-  const cities = favorites.map((item) => item.city.name)
-    .reduce((acc: string[], item) => (acc.includes(item) ? acc : [...acc, item]), []).sort();
-
-  const favoritesEmpty = Boolean(favorites.length === 0);
+  const favoritesEmpty = Boolean(hotels.length === 0);
 
   const favoriteContainer = (): JSX.Element => (
-    favorites.length !== 0 ?
-      <Favorites cities={cities} favorites={favorites}/>
+    hotels.length !== 0 ?
+      <Favorites favorites={hotels}/>
       :
       <FavoritesEmpty/>
   );
@@ -31,19 +27,15 @@ function FavoriteScreen({favorites, authStatus}: FavoriteScreenType): JSX.Elemen
 
   const mainClass = classNames('page__main page__main--favorites', {'page__main--favorites-empty': favoritesEmpty});
 
-  const footerClass = classNames('footer', {'container' : !favoritesEmpty});
-
   return (
     <div className={pageClass}>
-      <Header hotels={favorites} authStatus={authStatus} isFavorites={favorite}/>
+      <Header hotels={hotels} authStatus={authStatus} isFavorites={favorite}/>
       <main className={mainClass}>
         <div className="page__favorites-container container">
           {favoriteContainer()}
         </div>
       </main>
-      <footer className={footerClass}>
-        <Logo/>
-      </footer>
+      <Footer/>
     </div>
   );
 }
