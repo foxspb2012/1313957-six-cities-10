@@ -1,6 +1,7 @@
 import {useParams} from 'react-router-dom';
 import type {Hotel} from '../../types/hotel';
-import type {Comment} from '../../types/comment';
+import {comments} from '../../mocks/comments';
+import {hotelsNearby} from '../../mocks/hotels-nearby';
 import Header from '../../components/header/header';
 import PlaceCard from '../../components/place-card/place-card';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
@@ -10,15 +11,12 @@ import {AuthorizationStatus, Housing, MAX_IMG_COUNT} from '../../const';
 import {calculateRating} from '../../utils';
 import Map from '../../components/map/map';
 
-const MAX_CARD_NEARBY = 3;
-
-type OfferNotLoggedProps = {
+type OfferScreenProps = {
   hotels: Hotel[];
-  comments: Comment[];
   authStatus: AuthorizationStatus;
 }
 
-function OfferScreen({hotels, comments, authStatus}: OfferNotLoggedProps): JSX.Element {
+function OfferScreen({hotels, authStatus}: OfferScreenProps): JSX.Element {
 
   const {id} = useParams();
 
@@ -29,6 +27,8 @@ function OfferScreen({hotels, comments, authStatus}: OfferNotLoggedProps): JSX.E
       <NotFoundScreen/>
     );
   }
+
+  const hotelForMap = [ ...hotelsNearby, hotel];
 
   const rating = calculateRating(hotel.rating);
 
@@ -68,11 +68,9 @@ function OfferScreen({hotels, comments, authStatus}: OfferNotLoggedProps): JSX.E
     <span className="property__user-status">Pro</span>
   );
 
-  const commentsByOffer = comments.filter((comment) => hotel.reviews.includes(comment.id));
-
   const commentsList = (hasComments: boolean) => (
     hasComments &&
-    <Comments comments={commentsByOffer}/>
+    <Comments comments={comments}/>
   );
 
   const commentsForm = (isAuth: boolean) => (
@@ -81,7 +79,7 @@ function OfferScreen({hotels, comments, authStatus}: OfferNotLoggedProps): JSX.E
   );
 
   const nearHotels = () => (
-    hotels.slice(0, MAX_CARD_NEARBY).map((item) => (
+    hotelsNearby.map((item) => (
       <PlaceCard key={item.id} hotel={item} isNear/>
     ))
   );
@@ -160,10 +158,10 @@ function OfferScreen({hotels, comments, authStatus}: OfferNotLoggedProps): JSX.E
               </div>
               <section className="property__reviews reviews">
                 <h2 className="reviews__title">
-                  Reviews · <span className="reviews__amount">{commentsByOffer.length}</span>
+                  Reviews · <span className="reviews__amount">{comments.length}</span>
                 </h2>
                 {
-                  commentsList(commentsByOffer.length > 0)
+                  commentsList(comments.length > 0)
                 }
                 {
                   commentsForm(authStatus === AuthorizationStatus.Auth)
@@ -171,8 +169,8 @@ function OfferScreen({hotels, comments, authStatus}: OfferNotLoggedProps): JSX.E
               </section>
             </div>
           </div>
-          <section className="property__map map" style={{width: '100%'}}>
-            <Map hotels={hotels}/>
+          <section className="property__map map" style={{width: 1144, margin: '0 auto 50px auto'}}>
+            <Map hotels={hotelForMap} currentId={hotel.id}/>
           </section>
         </section>
         <div className="container">

@@ -25,6 +25,5 @@ export type Hotel = {
     longitude: number,
     zoom: number,
   },
-  id: number,
-  reviews: number[],
+  id: number
 }

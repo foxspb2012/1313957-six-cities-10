@@ -1,19 +1,18 @@
+import type {Hotel} from '../../types/hotel';
 import CityItem from '../city-item/city-item';
-import {useAppDispatch} from '../../hooks';
-import {changeCity, getHotels} from '../../store/action';
+import {store} from '../../store';
+import {changeCity} from '../../store/action';
 
 type CitiesListProps = {
   cities: string[];
   currentCity: string;
+  hotels: Hotel[];
 }
 
-function CitiesList({currentCity, cities}: CitiesListProps): JSX.Element {
+function CitiesList({currentCity, cities, hotels}: CitiesListProps): JSX.Element {
 
-  const dispatch = useAppDispatch();
-
-  const onCityClick = (city: string) => {
-    dispatch(changeCity(city));
-    dispatch(getHotels());
+  const onCityClick = (cityItem: string, hotelsItem: Hotel[]) => {
+    store.dispatch(changeCity(cityItem, hotelsItem));
   };
 
   return (
@@ -24,7 +23,7 @@ function CitiesList({currentCity, cities}: CitiesListProps): JSX.Element {
           <ul className="locations__list tabs__list">
             {
               cities.map((city) =>
-                <CityItem key={city} cityItem={city} currentCity={currentCity} onCityClick={onCityClick}/>
+                <CityItem key={city} cityItem={city} currentCity={currentCity} hotelsItem={hotels} onCityClick={onCityClick}/>
               )
             }
           </ul>

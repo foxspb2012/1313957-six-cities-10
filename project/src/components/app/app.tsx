@@ -1,5 +1,4 @@
 import type {Hotel} from '../../types/hotel';
-import type {Comment} from '../../types/comment';
 import MainScreen from '../../pages/main-screen/main-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import OfferScreen from '../../pages/offer-screen/offer-screen';
@@ -12,12 +11,11 @@ import {AppRoute, AuthorizationStatus} from '../../const';
 
 type AppScreenProps = {
   hotels: Hotel[];
-  comments: Comment[];
 }
 
 function App(props: AppScreenProps): JSX.Element {
 
-  const {hotels, comments} = props;
+  const {hotels} = props;
 
   return (
     <BrowserRouter>
@@ -34,7 +32,7 @@ function App(props: AppScreenProps): JSX.Element {
         <Route
           path={AppRoute.Room}
           element={
-            <OfferScreen hotels={hotels} comments={comments} authStatus={AuthorizationStatus.Auth} />
+            <OfferScreen hotels={hotels} authStatus={AuthorizationStatus.Auth} />
           }
         />
         <Route
