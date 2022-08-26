@@ -1,13 +1,18 @@
-import Logo from '../../components/logo/logo';
+import {Link} from 'react-router-dom';
+import {useAppSelector} from '../../hooks';
 
 function LoginScreen(): JSX.Element {
+  const currentCity = useAppSelector((state) => state.city);
+
   return (
     <div className="page page--gray page--login">
       <header className="header">
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <Logo />
+              <Link className="header__logo-link" to="/">
+                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
+              </Link>
             </div>
           </div>
         </div>
@@ -30,9 +35,9 @@ function LoginScreen(): JSX.Element {
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="/#">
-                <span>Amsterdam</span>
-              </a>
+              <Link className="locations__item-link" to={`/?tab=${currentCity}`}>
+                <span>{currentCity}</span>
+              </Link>
             </div>
           </section>
         </div>

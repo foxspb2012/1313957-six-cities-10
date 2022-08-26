@@ -4,22 +4,17 @@ import Map from '../../components/map/map';
 
 type MainCitiesProps = {
   hotels: Hotel[];
-  cities: string[];
+  city: string;
 }
 
-const CITY_NAME = 'Amsterdam';
-
-function MainCities({hotels, cities}: MainCitiesProps): JSX.Element {
-  const currentCity = cities.find((city) => city === CITY_NAME);
-
-  const filteredHotels = hotels.filter((hotel) => hotel.city.name === currentCity) as Hotel[];
+function MainCities({hotels, city}: MainCitiesProps): JSX.Element {
 
   return (
     <div className="cities">
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{hotels.length} places to stay in {currentCity}</b>
+          <b className="places__found">{hotels.length} places to stay in {city}</b>
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex={0}>
@@ -43,11 +38,11 @@ function MainCities({hotels, cities}: MainCitiesProps): JSX.Element {
               </li>
             </ul>
           </form>
-          <PlacesList hotels={filteredHotels}/>
+          <PlacesList hotels={hotels}/>
         </section>
         <div className="cities__right-section">
           <section style={{ width: '100%' }} >
-            <Map hotels={filteredHotels}/>
+            <Map hotels={hotels}/>
           </section>
         </div>
       </div>

@@ -1,4 +1,5 @@
 function NotFoundScreen(): JSX.Element {
+
   return (
     <main className="page__main page__main--index">
       <section className="container not-found">

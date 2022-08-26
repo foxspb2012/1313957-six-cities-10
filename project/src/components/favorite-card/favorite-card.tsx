@@ -7,6 +7,7 @@ type FavoriteCardProps = {
 };
 
 function FavoriteCard({hotel}: FavoriteCardProps): JSX.Element {
+
   const rating = calculateRatingRound(hotel.rating);
 
   return (

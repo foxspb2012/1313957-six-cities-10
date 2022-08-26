@@ -13,23 +13,23 @@ import {AppRoute, AuthorizationStatus} from '../../const';
 type AppScreenProps = {
   hotels: Hotel[];
   comments: Comment[];
-  cities: string[];
 }
 
 function App(props: AppScreenProps): JSX.Element {
-  const {hotels, comments, cities} = props;
+
+  const {hotels, comments} = props;
 
   return (
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
         <Route
-          path={AppRoute.Root}
-          element={<MainScreen hotels={hotels} cities={cities} authStatus={AuthorizationStatus.Auth} />}
-        />
-        <Route
           path={AppRoute.Login}
           element={<LoginScreen />}
+        />
+        <Route
+          path={AppRoute.Main}
+          element={<MainScreen hotels={hotels} authStatus={AuthorizationStatus.Auth} />}
         />
         <Route
           path={AppRoute.Room}
@@ -38,10 +38,10 @@ function App(props: AppScreenProps): JSX.Element {
           }
         />
         <Route
-          path={'/favorite'}
+          path={AppRoute.Favorites}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth} >
-              <FavoriteScreen favorites={hotels} authStatus={AuthorizationStatus.Auth} />
+              <FavoriteScreen authStatus={AuthorizationStatus.Auth} />
             </PrivateRoute>
           }
         />

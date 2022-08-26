@@ -1,6 +1,6 @@
 import type {Hotel} from '../../types/hotel';
 import {useRef, useEffect} from 'react';
-import useMap from './useMap';
+import useMap from '../../hooks/useMap';
 import {Icon, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -11,6 +11,7 @@ type CityMapProps = {
 function Map({hotels}: CityMapProps): JSX.Element {
 
   const mapRef = useRef(null);
+
   const map = useMap(mapRef, hotels[0].city);
 
   useEffect(() => {

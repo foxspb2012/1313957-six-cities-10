@@ -7,6 +7,7 @@ type ReviewProps = {
 }
 
 function Comments(props: ReviewProps): JSX.Element {
+
   const {comments} = props;
 
   const commentDate = (date: string) => (
