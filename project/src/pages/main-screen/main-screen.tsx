@@ -1,4 +1,3 @@
-import type {Hotel} from '../../types/hotel';
 import Header from '../../components/header/header';
 import CitiesList from '../../components/cities-list/cities-list';
 import MainCities from '../../components/main-cities/main-cities';
@@ -9,14 +8,14 @@ import {useAppSelector} from '../../hooks';
 import classNames from 'classnames';
 
 type MainPageProps = {
-  hotels: Hotel[];
   authStatus: AuthorizationStatus;
 }
 
-function MainScreen({hotels, authStatus}: MainPageProps): JSX.Element {
+function MainScreen({authStatus}: MainPageProps): JSX.Element {
 
+  const hotels = useAppSelector((state) => state.hotels);
   const currentCity = useAppSelector((state) => state.city);
-  const hotelsByCity = useAppSelector((state) => state.hotels);
+  const hotelsByCity = useAppSelector((state) => state.hotelsByCity);
 
   const hasHotels = Boolean(hotelsByCity.length > 0);
 

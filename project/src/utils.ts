@@ -27,3 +27,5 @@ export function sortHotels(stateOffers: Hotel[], defaultSortedOffers: Hotel[], s
       return defaultSortedOffers;
   }
 }
+
+export const getHotelsByCity = (hotelList: Hotel[], city: string) => hotelList.filter((hotel) => hotel.city.name === city);

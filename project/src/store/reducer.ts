@@ -1,26 +1,42 @@
 import type {Hotel} from '../types/hotel';
-import {DEFAULT_CITY} from '../const';
-import {hotels} from '../mocks/hotels';
-import {changeCity, hoverOnCard, changeSortTypeAction, clickSortMenuAction} from './action';
-import {sortHotels} from '../utils';
+import {DEFAULT_CITY, AuthorizationStatus} from '../const';
+
+import {
+  changeCity, hoverOnCard, changeSortTypeAction, clickSortMenuAction,
+  loadHotelsAction, requireAuthorization, setDataLoadedStatus
+} from './action';
+import {sortHotels, getHotelsByCity} from '../utils';
 import {createReducer} from '@reduxjs/toolkit';
 
-const getHotelsByCity = (hotelList: Hotel[], city: string) => hotelList.filter((hotel) => hotel.city.name === city);
+type InitialStateType = {
+  city: string;
+  hotels: Hotel[];
+  hotelsByCity: Hotel[];
+  hotelId: null;
+  isSortMenuOpened: boolean,
+  activeSortOption: string;
+  authorizationStatus: AuthorizationStatus;
+  defaultSortedOffers: Hotel[],
+  isDataLoaded: boolean;
+}
 
-const initialState = {
+const initialState: InitialStateType = {
   city: DEFAULT_CITY,
-  hotels: getHotelsByCity(hotels, DEFAULT_CITY),
+  hotels: [],
+  hotelsByCity: [],
   hotelId: null,
   isSortMenuOpened: false,
   activeSortOption: 'Popular',
-  defaultSortedOffers: hotels.filter((hotel) => hotel.city.name === DEFAULT_CITY),
+  authorizationStatus: AuthorizationStatus.Unknown,
+  defaultSortedOffers: [],
+  isDataLoaded: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(changeCity, (state, action) => {
       state.city = action.payload.city;
-      state.hotels = getHotelsByCity(action.payload.hotels, action.payload.city);
+      state.hotelsByCity = getHotelsByCity(action.payload.hotels, action.payload.city);
       state.activeSortOption = 'Popular';
       state.isSortMenuOpened = false;
       state.defaultSortedOffers = getHotelsByCity(action.payload.hotels, action.payload.city);
@@ -34,7 +50,17 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(changeSortTypeAction, (state, action) => {
       state.activeSortOption = action.payload.sortOption;
       state.isSortMenuOpened = false;
-      state.hotels = sortHotels(state.hotels, state.defaultSortedOffers, action.payload.sortOption);
+      state.hotelsByCity = sortHotels(getHotelsByCity(state.hotels, state.city), state.defaultSortedOffers, action.payload.sortOption);
+    })
+    .addCase(loadHotelsAction, (state, action) => {
+      state.hotels = action.payload;
+      state.hotelsByCity = getHotelsByCity(state.hotels, state.city);
+    })
+    .addCase(setDataLoadedStatus, (state, action) => {
+      state.isDataLoaded = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
 

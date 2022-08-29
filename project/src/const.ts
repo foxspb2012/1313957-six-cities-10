@@ -44,3 +44,16 @@ export const SortOptions : string[] = [
   'Price: high to low',
   'Top rated first',
 ];
+
+export enum APIRoute {
+  Hotels = '/hotels',
+  HotelsId = '/hotels/{hotelId}',
+  HotelsIdNearby = '/hotels/{hotelId}/nearby'
+}
+
+export const SORTING = {
+  POPULAR: 'Popular',
+  PRICE_LOW_TO_HIGH: 'Price: low to high',
+  PRICE_HIGH_TO_LOW: 'Price: high to low',
+  TOP_RATED_FIRST: 'Top rated first'
+};
