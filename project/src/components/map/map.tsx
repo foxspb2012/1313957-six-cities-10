@@ -1,26 +1,45 @@
 import type {Hotel} from '../../types/hotel';
-import {useRef, useEffect} from 'react';
 import useMap from '../../hooks/useMap';
+import {useRef, useEffect} from 'react';
 import {Icon, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import {useAppSelector} from '../../hooks';
+import {PIN_SIZES} from '../../const';
 
 type CityMapProps = {
   hotels: Hotel[];
+  currentId?: number;
 }
 
-function Map({hotels}: CityMapProps): JSX.Element {
+function Map({hotels, currentId = undefined}: CityMapProps): JSX.Element {
+
+  const hotelId = useAppSelector((state) => state.hotelId);
+  const selectedId = currentId || hotelId;
 
   const mapRef = useRef(null);
-
-  const map = useMap(mapRef, hotels[0].city);
+  const city = hotels[0].city;
+  const map = useMap(mapRef, city);
 
   useEffect(() => {
     if (map) {
+      const {location :{latitude, longitude, zoom}} = city;
+      map.setView(
+        [latitude, longitude],
+        zoom,
+      );
+
       hotels.forEach((hotel) => {
-        const defaultCustomIcon = new Icon({
+
+        const defaultPin = new Icon({
           iconUrl: 'img/pin.svg',
-          iconSize: [20, 30],
-          iconAnchor: [20, 30]
+          iconSize: PIN_SIZES.iconSize,
+          iconAnchor: PIN_SIZES.iconAnchor
+        });
+
+        const currentPin = new Icon({
+          iconUrl: 'img/pin-active.svg',
+          iconSize: PIN_SIZES.iconSize,
+          iconAnchor: PIN_SIZES.iconAnchor
         });
 
         const marker = new Marker({
@@ -29,11 +48,16 @@ function Map({hotels}: CityMapProps): JSX.Element {
         });
 
         marker
-          .setIcon(defaultCustomIcon)
+          .setIcon(
+            hotel.id === selectedId
+              ? currentPin
+              : defaultPin
+          )
           .addTo(map);
       });
     }
-  }, [map, hotels]);
+
+  }, [map, hotels, selectedId, city]);
 
   return (
     <div

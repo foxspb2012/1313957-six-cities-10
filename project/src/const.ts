@@ -1,3 +1,5 @@
+import type {Pin} from './types/pin';
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -31,3 +33,14 @@ export const MAX_IMG_COUNT = 6;
 
 export const DEFAULT_CITY = 'Paris';
 
+export const PIN_SIZES: Pin = {
+  iconSize: [27, 39],
+  iconAnchor: [14, 39]
+};
+
+export const SortOptions : string[] = [
+  'Popular',
+  'Price: low to high',
+  'Price: high to low',
+  'Top rated first',
+];

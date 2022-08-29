@@ -1,4 +1,4 @@
-import {Hotel} from '../types/hotel';
+import type {Hotel} from '../types/hotel';
 
 export const hotels: Hotel[] = [
   {
@@ -53,8 +53,7 @@ export const hotels: Hotel[] = [
       longitude: 4.85309666406198,
       zoom: 16
     },
-    id: 1,
-    reviews: [1,3],
+    id: 1
   },
   {
     city: {
@@ -106,8 +105,7 @@ export const hotels: Hotel[] = [
       longitude: 4.85309666406198,
       zoom: 16
     },
-    id: 2,
-    reviews: [2,3],
+    id: 2
   },
   {
     city: {
@@ -165,8 +163,7 @@ export const hotels: Hotel[] = [
       longitude: 4.929309666406198,
       zoom: 16
     },
-    id: 3,
-    reviews: [1,2,3],
+    id: 3
   },
   {
     city: {
@@ -225,8 +222,7 @@ export const hotels: Hotel[] = [
       longitude: 4.939309666406198,
       zoom: 16
     },
-    id: 4,
-    reviews: [3],
+    id: 4
   },
   {
     city: {
@@ -281,8 +277,7 @@ export const hotels: Hotel[] = [
       longitude: 6.978974,
       zoom: 16
     },
-    id: 5,
-    reviews: [1, 2],
+    id: 5
   },
   {
     city: {
@@ -336,8 +331,7 @@ export const hotels: Hotel[] = [
       longitude: 6.7853140000000005,
       zoom: 16
     },
-    id: 6,
-    reviews: [1, 3],
+    id: 6
   },
   {
     city: {
@@ -394,8 +388,7 @@ export const hotels: Hotel[] = [
       longitude: 6.969974,
       zoom: 16
     },
-    id: 7,
-    reviews: [1, 2],
+    id: 7
   },
   {
     city: {
@@ -452,7 +445,6 @@ export const hotels: Hotel[] = [
       longitude: 2.342499,
       zoom: 16
     },
-    id: 8,
-    reviews: [3],
+    id: 8
   },
 ];

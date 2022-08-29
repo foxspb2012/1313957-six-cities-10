@@ -33,7 +33,7 @@ function MainScreen({hotels, authStatus}: MainPageProps): JSX.Element {
     <div className="page page--gray page--main">
       <Header hotels={hotels} authStatus={authStatus}/>
       <main className={mainClass}>
-        <CitiesList currentCity={currentCity} cities={Cities}/>
+        <CitiesList currentCity={currentCity} cities={Cities} hotels={hotels}/>
         {citiesHotel()}
       </main>
     </div>
