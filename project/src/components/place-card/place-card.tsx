@@ -1,25 +1,28 @@
 import type {Hotel} from '../../types/hotel';
-import {Housing} from '../../const';
+import {CardType} from '../../const';
 import {Link} from 'react-router-dom';
 import {calculateRatingRound} from '../../utils';
 import classNames from 'classnames';
 
 type PlaceCardProps = {
   hotel: Hotel;
-  isNear: boolean;
+  cardType: string;
   onMouseOver?: (cardId: number) => void;
   onMouseLeave?: () => void;
 };
 
-function PlaceCard({hotel, isNear, onMouseOver, onMouseLeave}: PlaceCardProps): JSX.Element {
+function PlaceCard({hotel, cardType, onMouseOver, onMouseLeave}: PlaceCardProps): JSX.Element {
+
+  const {id, price, title, type, previewImage, isFavorite} = hotel;
 
   const rating = calculateRatingRound(hotel.rating);
 
-  const onCardOver = () => onMouseOver?.(hotel.id);
-
-  const onCardLeave = () => onMouseLeave?.();
-
-  const articleClass = classNames('place-card', {'near-places__card' : isNear, 'cities__card': !isNear} );
+  const articleClass = classNames('place-card',
+    {
+      'favorites__card': cardType === CardType.FAVORITES,
+      'cities__card': cardType === CardType.CITIES,
+      'near-places__card': cardType === CardType.NEAR_PLACES,
+    });
 
   const markPremium = (isPremium: boolean) => (
     isPremium &&
@@ -28,42 +31,54 @@ function PlaceCard({hotel, isNear, onMouseOver, onMouseLeave}: PlaceCardProps): 
     </div>
   );
 
-  const imageClass = classNames('place-card__image-wrapper', {'near-places__image-wrapper': isNear}, {'cities__image-wrapper' : !isNear});
+  const imageClass = classNames('place-card__image-wrapper',
+    {
+      'favorites__image-wrapper': cardType === CardType.FAVORITES,
+      'cities__image-wrapper': cardType === CardType.CITIES,
+      'near-places__image-wrapper': cardType === CardType.NEAR_PLACES,
+    });
+  const imgWidth = cardType === CardType.FAVORITES ? '150' : '260';
+  const imgHeight = cardType === CardType.FAVORITES ? '110' : '200';
 
-  const buttonClass = classNames('place-card__bookmark-button', 'button', {'place-card__bookmark-button--active': hotel.isFavorite});
+  const cardInfoClass = classNames('place-card__info', {'favorites__card-info': cardType === CardType.FAVORITES});
+
+  const buttonClass = classNames('button place-card__bookmark-button',
+    {
+      'place-card__bookmark-button--active': isFavorite
+    });
 
   return (
-    <article className={articleClass} onMouseOver={onCardOver} onMouseLeave={onCardLeave}>
+    <article className={articleClass} onMouseOver={() => onMouseOver?.(id)} onMouseLeave={() => onMouseLeave?.()}>
       {markPremium(hotel.isPremium)}
+
       <div className={imageClass}>
-        <Link to={`/offer/${hotel.id}`}>
-          <img className="place-card__image" src={`${hotel.previewImage}`} width={260} height={200} alt="Place pic"/>
+        <Link to={`/offer/${id}`}>
+          <img className="place-card__image" src={previewImage} width={imgWidth} height={imgHeight} alt="Place pic"/>
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className={cardInfoClass}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">€{hotel.price}</b>
-            <span className="place-card__price-text">/&nbsp;night</span>
+            <b className="place-card__price-value">&euro;{price}</b>
+            <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className={buttonClass} type="button">
-            <svg className="place-card__bookmark-icon" width={18} height={19}>
-              <use xlinkHref="#icon-bookmark"/>
+            <svg className="place-card__bookmark-icon" width="18" height="19">
+              <use xlinkHref="#icon-bookmark"></use>
             </svg>
-            <span className="visually-hidden">To bookmarks</span>
+            <span className="visually-hidden">In bookmarks</span>
           </button>
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: rating}}/>
+            <span style={{width: `${rating}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <link href="#"/>
-          {hotel.title}
+          <Link to={`/offer/${id}`}>{title}</Link>
         </h2>
-        <p className="place-card__type">{Housing[hotel.type]}</p>
+        <p className="place-card__type">{type}</p>
       </div>
     </article>
   );

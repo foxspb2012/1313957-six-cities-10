@@ -11,13 +11,22 @@ type CityMapProps = {
   currentId?: number;
 }
 
+const defaultCity = {
+  location: {
+    latitude: 48.85661,
+    longitude: 2.351499,
+    zoom: 13
+  },
+  name: 'Paris'
+};
+
 function Map({hotels, currentId = undefined}: CityMapProps): JSX.Element {
 
   const hotelId = useAppSelector((state) => state.hotelId);
   const selectedId = currentId || hotelId;
 
   const mapRef = useRef(null);
-  const city = hotels[0].city;
+  const city = (hotels.length !== 0) ? hotels[0]?.city : defaultCity;
   const map = useMap(mapRef, city);
 
   useEffect(() => {
@@ -57,7 +66,14 @@ function Map({hotels, currentId = undefined}: CityMapProps): JSX.Element {
       });
     }
 
-  }, [map, hotels, selectedId, city]);
+    return () => {
+      map?.eachLayer((it) => {
+        if (it.getPane()?.classList.contains('leaflet-marker-pane')) {
+          it.remove();
+        }
+      });
+    };
+  });
 
   return (
     <div

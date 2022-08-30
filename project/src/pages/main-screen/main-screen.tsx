@@ -2,16 +2,11 @@ import Header from '../../components/header/header';
 import CitiesList from '../../components/cities-list/cities-list';
 import MainCities from '../../components/main-cities/main-cities';
 import MainEmpty from '../../components/main-empty/main-empty';
-import {AuthorizationStatus} from '../../const';
 import {Cities} from '../../const';
 import {useAppSelector} from '../../hooks';
 import classNames from 'classnames';
 
-type MainPageProps = {
-  authStatus: AuthorizationStatus;
-}
-
-function MainScreen({authStatus}: MainPageProps): JSX.Element {
+function MainScreen(): JSX.Element {
 
   const hotels = useAppSelector((state) => state.hotels);
   const currentCity = useAppSelector((state) => state.city);
@@ -30,7 +25,7 @@ function MainScreen({authStatus}: MainPageProps): JSX.Element {
 
   return (
     <div className="page page--gray page--main">
-      <Header hotels={hotels} authStatus={authStatus}/>
+      <Header isNavVisible/>
       <main className={mainClass}>
         <CitiesList currentCity={currentCity} cities={Cities} hotels={hotels}/>
         {citiesHotel()}
