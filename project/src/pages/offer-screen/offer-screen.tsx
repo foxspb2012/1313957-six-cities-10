@@ -1,5 +1,4 @@
 import {useParams} from 'react-router-dom';
-import type {Hotel} from '../../types/hotel';
 import {comments} from '../../mocks/comments';
 import {hotelsNearby} from '../../mocks/hotels-nearby';
 import Header from '../../components/header/header';
@@ -10,15 +9,17 @@ import CommentsForm from '../../components/comments-form/comments-form';
 import {AuthorizationStatus, Housing, MAX_IMG_COUNT} from '../../const';
 import {calculateRating} from '../../utils';
 import Map from '../../components/map/map';
+import {useAppSelector} from '../../hooks';
 
 type OfferScreenProps = {
-  hotels: Hotel[];
   authStatus: AuthorizationStatus;
 }
 
-function OfferScreen({hotels, authStatus}: OfferScreenProps): JSX.Element {
+function OfferScreen({authStatus}: OfferScreenProps): JSX.Element {
 
   const {id} = useParams();
+
+  const hotels = useAppSelector((state) => state.hotels);
 
   const hotel = hotels.find((item) => item.id === Number(id));
 

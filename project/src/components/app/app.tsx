@@ -1,4 +1,3 @@
-import type {Hotel} from '../../types/hotel';
 import MainScreen from '../../pages/main-screen/main-screen';
 import LoginScreen from '../../pages/login-screen/login-screen';
 import OfferScreen from '../../pages/offer-screen/offer-screen';
@@ -8,44 +7,48 @@ import PrivateRoute from '../private-route/private-route';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {ScrollToTop} from '../../utils';
 import {AppRoute, AuthorizationStatus} from '../../const';
+import Loading from '../loading/loading';
+import {useAppSelector} from '../../hooks';
 
-type AppScreenProps = {
-  hotels: Hotel[];
-}
+function App(): JSX.Element {
 
-function App(props: AppScreenProps): JSX.Element {
+  const {isDataLoaded} = useAppSelector((state) => state);
 
-  const {hotels} = props;
+  if (isDataLoaded) {
+    return (
+      <Loading/>
+    );
+  }
 
   return (
     <BrowserRouter>
-      <ScrollToTop />
+      <ScrollToTop/>
       <Routes>
         <Route
           path={AppRoute.Login}
-          element={<LoginScreen />}
+          element={<LoginScreen/>}
         />
         <Route
           path={AppRoute.Main}
-          element={<MainScreen hotels={hotels} authStatus={AuthorizationStatus.Auth} />}
+          element={<MainScreen authStatus={AuthorizationStatus.Auth}/>}
         />
         <Route
           path={AppRoute.Room}
           element={
-            <OfferScreen hotels={hotels} authStatus={AuthorizationStatus.Auth} />
+            <OfferScreen authStatus={AuthorizationStatus.Auth}/>
           }
         />
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth} >
-              <FavoriteScreen authStatus={AuthorizationStatus.Auth} />
+            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <FavoriteScreen authStatus={AuthorizationStatus.Auth}/>
             </PrivateRoute>
           }
         />
         <Route
           path="*"
-          element={<NotFoundScreen />}
+          element={<NotFoundScreen/>}
         />
       </Routes>
     </BrowserRouter>
