@@ -4,9 +4,11 @@ import OfferScreen from '../../pages/offer-screen/offer-screen';
 import FavoriteScreen from '../../pages/favorite-screen/favorite-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import {ScrollToTop} from '../../utils';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import {AppRoute} from '../../const';
+import {browserHistory} from '../../browser-history';
+import {HistoryRouter} from '../history-route/history-route';
 import Loading from '../loading/loading';
 import {useAppSelector} from '../../hooks';
 
@@ -21,28 +23,32 @@ function App(): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <ScrollToTop/>
       <Routes>
         <Route
           path={AppRoute.Login}
-          element={<LoginScreen/>}
+          element={
+            <PrivateRoute>
+              <LoginScreen/>
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.Main}
-          element={<MainScreen authStatus={AuthorizationStatus.Auth}/>}
+          element={<MainScreen/>}
         />
         <Route
           path={AppRoute.Room}
           element={
-            <OfferScreen authStatus={AuthorizationStatus.Auth}/>
+            <OfferScreen />
           }
         />
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <FavoriteScreen authStatus={AuthorizationStatus.Auth}/>
+            <PrivateRoute>
+              <FavoriteScreen />
             </PrivateRoute>
           }
         />
@@ -51,7 +57,7 @@ function App(): JSX.Element {
           element={<NotFoundScreen/>}
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 

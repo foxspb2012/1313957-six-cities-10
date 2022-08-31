@@ -1,9 +1,12 @@
 import type {Hotel} from '../types/hotel';
+import type {UserData} from '../types/user-data';
+import type {Comment} from '../types/comment';
 import {DEFAULT_CITY, AuthorizationStatus} from '../const';
 
 import {
   changeCity, hoverOnCard, changeSortTypeAction, clickSortMenuAction,
-  loadHotelsAction, requireAuthorization, setDataLoadedStatus
+  loadHotelsAction, requireAuthorization, setDataLoadedStatus, setUser,
+  setHotelAction, setNearHotelAction, setReviewAction, setDataLoadingError
 } from './action';
 import {sortHotels, getHotelsByCity} from '../utils';
 import {createReducer} from '@reduxjs/toolkit';
@@ -16,8 +19,13 @@ type InitialStateType = {
   isSortMenuOpened: boolean,
   activeSortOption: string;
   authorizationStatus: AuthorizationStatus;
-  defaultSortedOffers: Hotel[],
+  defaultSortedOffers: Hotel[];
   isDataLoaded: boolean;
+  user: UserData | null;
+  offer: Hotel | null;
+  nearOffers: Hotel[];
+  comments: Comment [];
+  isLoadingError: boolean;
 }
 
 const initialState: InitialStateType = {
@@ -30,6 +38,11 @@ const initialState: InitialStateType = {
   authorizationStatus: AuthorizationStatus.Unknown,
   defaultSortedOffers: [],
   isDataLoaded: false,
+  user: null,
+  offer: null,
+  nearOffers: [],
+  comments: [],
+  isLoadingError: false
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -61,6 +74,21 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(setUser, (state, action) => {
+      state.user = action.payload.user;
+    })
+    .addCase(setHotelAction, (state, action) => {
+      state.offer = action.payload;
+    })
+    .addCase(setNearHotelAction, (state, action) => {
+      state.nearOffers = action.payload;
+    })
+    .addCase(setReviewAction, (state, action) => {
+      state.comments = action.payload;
+    })
+    .addCase(setDataLoadingError, (state, action) => {
+      state.isLoadingError = action.payload;
     });
 });
 

@@ -29,3 +29,14 @@ export function sortHotels(stateOffers: Hotel[], defaultSortedOffers: Hotel[], s
 }
 
 export const getHotelsByCity = (hotelList: Hotel[], city: string) => hotelList.filter((hotel) => hotel.city.name === city);
+
+export const validatePassword = (password: string) => {
+
+  if (!password) {
+    return false;
+  }
+
+  const regPassword = /(?=.*[0-9])/;
+
+  return password.search(regPassword) > -1;
+};

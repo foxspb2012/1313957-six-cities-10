@@ -4,13 +4,23 @@ export enum AppRoute {
   Main = '/',
   Login = '/login',
   Favorites = '/favorites',
-  Room = 'offer/:id'
+  Room = 'offer/:id',
+  NotFoundPage = '*'
 }
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
+}
+
+export enum APIRoute {
+  Hotels = '/hotels',
+  HotelsId = '/hotels/{hotelId}',
+  HotelsIdNearby = '/hotels/{hotelId}/nearby',
+  Login = '/login',
+  Logout = '/logout',
+  Comment = '/comments/'
 }
 
 export const Housing: { [key: string]: string } = {
@@ -45,15 +55,31 @@ export const SortOptions : string[] = [
   'Top rated first',
 ];
 
-export enum APIRoute {
-  Hotels = '/hotels',
-  HotelsId = '/hotels/{hotelId}',
-  HotelsIdNearby = '/hotels/{hotelId}/nearby'
-}
-
-export const SORTING = {
-  POPULAR: 'Popular',
-  PRICE_LOW_TO_HIGH: 'Price: low to high',
-  PRICE_HIGH_TO_LOW: 'Price: high to low',
-  TOP_RATED_FIRST: 'Top rated first'
+export const CardType = {
+  FAVORITES: 'favorites',
+  CITIES: 'cities',
+  NEAR_PLACES: 'near-places'
 };
+
+export const RATING_DATA = [
+  {
+    rating: '5',
+    value: 'perfect'
+  },
+  {
+    rating: '4',
+    value: 'good'
+  },
+  {
+    rating: '3',
+    value: 'not bad'
+  },
+  {
+    rating: '2',
+    value: 'badly'
+  },
+  {
+    rating: '1',
+    value: 'terribly'
+  }
+];
