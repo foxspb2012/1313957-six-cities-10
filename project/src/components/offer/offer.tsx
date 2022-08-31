@@ -1,12 +1,16 @@
 import type {Hotel} from '../../types/hotel';
 import type {Comment} from '../../types/comment';
-import {AuthorizationStatus, CardType, MAX_IMG_COUNT} from '../../const';
+import {useNavigate} from 'react-router-dom';
+import {AppRoute, AuthorizationStatus, CardType, MAX_IMG_COUNT} from '../../const';
 import PlacesList from '../places-list/places-list';
 import CommentForm from '../comments-form/comments-form';
 import Map from '../../components/map/map';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {calculateRating} from '../../utils';
-import Comments from '../comments/comments';
+import CommentsList from '../comments-list/comments-list';
+import {changeFavoriteStatusAction} from '../../store/api-action';
+import classNames from 'classnames';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 
 type OfferProps = {
   hotel: Hotel,
@@ -16,10 +20,22 @@ type OfferProps = {
 
 function Offer({nearHotels, comments, hotel}: OfferProps): JSX.Element {
 
-  const isAuth = useAppSelector((state) => state.authorizationStatus) === AuthorizationStatus.Auth;
+  const isAuth = useAppSelector(getAuthorizationStatus) === AuthorizationStatus.Auth;
 
-  const {id, title, isPremium, rating, type, bedrooms, maxAdults, price, goods, host, description} = hotel;
+  const {id, title, isPremium, rating, type, bedrooms, maxAdults, price, goods, host, description, isFavorite} = hotel;
   const reviewRating = calculateRating(rating);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    (isAuth) ?
+      dispatch(changeFavoriteStatusAction({
+        id,
+        status: isFavorite ? 0 : 1
+      }))
+      : navigate(AppRoute.Login);
+  };
 
   const hotelForMap = [...nearHotels, hotel];
 
@@ -43,15 +59,20 @@ function Offer({nearHotels, comments, hotel}: OfferProps): JSX.Element {
     <span className="property__user-status">Pro</span>
   );
 
-  const commentsList = (hasComments: boolean) => (
+  const getCommentsList = (hasComments: boolean) => (
     hasComments &&
-    <Comments comments={comments}/>
+    <CommentsList comments={comments}/>
   );
 
   const commentsForm = () => (
     isAuth &&
     <CommentForm/>
   );
+
+  const buttonClass = classNames('button property__bookmark-button',
+    {
+      'property__bookmark-button--active': isFavorite
+    });
 
   return (
     <main className="page__main page__main--property">
@@ -72,8 +93,8 @@ function Offer({nearHotels, comments, hotel}: OfferProps): JSX.Element {
               <h1 className="property__name">
                 {title}
               </h1>
-              <button className="property__bookmark-button button" type="button">
-                <svg className="property__bookmark-icon" width="31" height="33">
+              <button className={buttonClass} type="button" onClick={handleClick}>
+                <svg className="place-card__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"></use>
                 </svg>
                 <span className="visually-hidden">To bookmarks</span>
@@ -137,7 +158,7 @@ function Offer({nearHotels, comments, hotel}: OfferProps): JSX.Element {
                 Reviews · <span className="reviews__amount">{comments.length}</span>
               </h2>
               {
-                commentsList(comments.length > 0)
+                getCommentsList(comments.length > 0)
               }
               {
                 commentsForm()
@@ -146,7 +167,7 @@ function Offer({nearHotels, comments, hotel}: OfferProps): JSX.Element {
           </div>
         </div>
         <section className="property__map map" style={{width: 1144, margin: '0 auto 50px auto'}}>
-          <Map hotels={hotelForMap} currentId={hotel.id}/>
+          <Map hotels={hotelForMap} selectedHotel={hotel}/>
         </section>
       </section>
       <div className="container">

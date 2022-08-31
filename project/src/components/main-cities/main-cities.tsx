@@ -7,9 +7,10 @@ import {CardType} from '../../const';
 type MainCitiesProps = {
   hotels: Hotel[];
   city: string;
+  selectedHotel?: Hotel;
 }
 
-function MainCities({hotels, city}: MainCitiesProps): JSX.Element {
+function MainCities({hotels, city, selectedHotel}: MainCitiesProps): JSX.Element {
 
   return (
     <div className="cities">
@@ -22,7 +23,7 @@ function MainCities({hotels, city}: MainCitiesProps): JSX.Element {
         </section>
         <div className="cities__right-section">
           <section className="cities__map map">
-            <Map hotels={hotels}/>
+            <Map hotels={hotels} selectedHotel={selectedHotel}/>
           </section>
         </div>
       </div>

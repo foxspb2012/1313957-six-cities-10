@@ -1,7 +1,7 @@
 import React, {useState, ChangeEvent, Fragment} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch} from '../../hooks';
-import {RATING_DATA} from '../../const';
+import {RATING_DATA, COMMENT_LENGTH_MIN} from '../../const';
 import {addCommentAction} from '../../store/api-action';
 
 type CommentStateData = {
@@ -46,7 +46,7 @@ function CommentForm(): JSX.Element {
   };
 
   const isDisabled =
-    reviewData.comment.length < 50 && reviewData.rating === '';
+    reviewData.comment.length < COMMENT_LENGTH_MIN && reviewData.rating === '';
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>

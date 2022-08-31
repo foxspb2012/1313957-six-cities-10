@@ -1,6 +1,5 @@
 import {Hotel} from '../../types/hotel';
 import FavoriteItem from '../favorite-item/favorite-item';
-import {hotels} from '../../mocks/hotels';
 
 type FavoritesProps = {
   favorites: Hotel[];
@@ -8,7 +7,7 @@ type FavoritesProps = {
 
 function Favorites({favorites}: FavoritesProps): JSX.Element {
 
-  const cities = hotels.map((item) => item.city.name)
+  const cities = favorites.map((item) => item.city.name)
     .reduce((acc: string[], item) => (acc.includes(item) ? acc : [...acc, item]), []).sort();
 
   const favoriteItems = () => cities.map((city) => (

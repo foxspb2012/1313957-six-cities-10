@@ -1,6 +1,10 @@
 import type {Hotel} from '../../types/hotel';
 import {calculateRatingRound} from '../../utils';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+import {changeFavoriteStatusAction} from '../../store/api-action';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {AuthorizationStatus, AppRoute} from '../../const';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 
 type FavoriteCardProps = {
   hotel: Hotel;
@@ -8,7 +12,23 @@ type FavoriteCardProps = {
 
 function FavoriteCard({hotel}: FavoriteCardProps): JSX.Element {
 
+  const {id} = hotel;
+
   const rating = calculateRatingRound(hotel.rating);
+
+  const isAuth = useAppSelector(getAuthorizationStatus) === AuthorizationStatus.Auth;
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    (isAuth) ?
+      dispatch(changeFavoriteStatusAction({
+        id,
+        status: 0
+      }))
+      : navigate(AppRoute.Login);
+  };
 
   return (
     <article className="favorites__card place-card">
@@ -23,7 +43,7 @@ function FavoriteCard({hotel}: FavoriteCardProps): JSX.Element {
             <b className="place-card__price-value">€{hotel.price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
+          <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button" onClick={handleClick}>
             <svg className="place-card__bookmark-icon" width={18} height={19}>
               <use xlinkHref="#icon-bookmark"/>
             </svg>
