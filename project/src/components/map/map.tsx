@@ -3,12 +3,11 @@ import useMap from '../../hooks/useMap';
 import {useRef, useEffect} from 'react';
 import {Icon, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {useAppSelector} from '../../hooks';
 import {PIN_SIZES} from '../../const';
 
 type CityMapProps = {
   hotels: Hotel[];
-  currentId?: number;
+  selectedHotel?: Hotel;
 }
 
 const defaultCity = {
@@ -20,10 +19,7 @@ const defaultCity = {
   name: 'Paris'
 };
 
-function Map({hotels, currentId = undefined}: CityMapProps): JSX.Element {
-
-  const hotelId = useAppSelector((state) => state.hotelId);
-  const selectedId = currentId || hotelId;
+function Map({hotels, selectedHotel}: CityMapProps): JSX.Element {
 
   const mapRef = useRef(null);
   const city = (hotels.length !== 0) ? hotels[0]?.city : defaultCity;
@@ -58,7 +54,7 @@ function Map({hotels, currentId = undefined}: CityMapProps): JSX.Element {
 
         marker
           .setIcon(
-            hotel.id === selectedId
+            selectedHotel === hotel
               ? currentPin
               : defaultPin
           )

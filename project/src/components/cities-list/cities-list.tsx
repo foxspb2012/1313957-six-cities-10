@@ -1,18 +1,21 @@
-import type {Hotel} from '../../types/hotel';
 import CityItem from '../city-item/city-item';
-import {store} from '../../store';
-import {changeCity} from '../../store/action';
+import {selectCityAction, setOffersByCityAction, sortValueAction} from '../../store/hotels-data/hotels-data';
+import {useAppDispatch} from '../../hooks';
+import { SortOptions } from '../../const';
 
 type CitiesListProps = {
   cities: string[];
   currentCity: string;
-  hotels: Hotel[];
 }
 
-function CitiesList({currentCity, cities, hotels}: CitiesListProps): JSX.Element {
+function CitiesList({currentCity, cities}: CitiesListProps): JSX.Element {
 
-  const onCityClick = (cityItem: string, hotelsItem: Hotel[]) => {
-    store.dispatch(changeCity(cityItem, hotelsItem));
+  const dispatch = useAppDispatch();
+
+  const onCityClick = (city: string) => {
+    dispatch(selectCityAction(city));
+    dispatch(setOffersByCityAction());
+    dispatch(sortValueAction(SortOptions.POPULAR));
   };
 
   return (
@@ -23,7 +26,7 @@ function CitiesList({currentCity, cities, hotels}: CitiesListProps): JSX.Element
           <ul className="locations__list tabs__list">
             {
               cities.map((city) =>
-                <CityItem key={city} cityItem={city} currentCity={currentCity} hotelsItem={hotels} onCityClick={onCityClick}/>
+                <CityItem key={city} cityItem={city} currentCity={currentCity} onCityClick={onCityClick}/>
               )
             }
           </ul>

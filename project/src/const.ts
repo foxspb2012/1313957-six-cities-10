@@ -5,7 +5,8 @@ export enum AppRoute {
   Login = '/login',
   Favorites = '/favorites',
   Room = 'offer/:id',
-  NotFoundPage = '*'
+  NotFoundPage = '*',
+
 }
 
 export enum AuthorizationStatus {
@@ -20,7 +21,8 @@ export enum APIRoute {
   HotelsIdNearby = '/hotels/{hotelId}/nearby',
   Login = '/login',
   Logout = '/logout',
-  Comment = '/comments/'
+  Comment = '/comments/',
+  Favorites = '/favorite/'
 }
 
 export const Housing: { [key: string]: string } = {
@@ -48,12 +50,12 @@ export const PIN_SIZES: Pin = {
   iconAnchor: [14, 39]
 };
 
-export const SortOptions : string[] = [
-  'Popular',
-  'Price: low to high',
-  'Price: high to low',
-  'Top rated first',
-];
+export const SortOptions = {
+  POPULAR: 'Popular',
+  PRICE_LOW_TO_HIGH: 'Price: low to high',
+  PRICE_HIGH_TO_LOW: 'Price: high to low',
+  TOP_RATED_FIRST: 'Top rated first'
+};
 
 export const CardType = {
   FAVORITES: 'favorites',
@@ -83,3 +85,11 @@ export const RATING_DATA = [
     value: 'terribly'
   }
 ];
+
+export const COMMENT_LENGTH_MIN = 50;
+
+export enum NameSpace {
+  Data = 'DATA',
+  Offers = 'OFFERS',
+  User = 'USER',
+}

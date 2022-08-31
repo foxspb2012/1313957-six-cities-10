@@ -1,7 +1,7 @@
 import type {Hotel} from '../../types/hotel';
 import PlaceCard from '../place-card/place-card';
 import {useAppDispatch} from '../../hooks';
-import {hoverOnCard} from '../../store/action';
+import {setHoverCityIdAction} from '../../store/offers-process/offers-process';
 import classNames from 'classnames';
 import {CardType} from '../../const';
 
@@ -13,8 +13,8 @@ type PlacesListProps = {
 function PlacesList({hotels, type}: PlacesListProps): JSX.Element {
   const dispatch = useAppDispatch();
 
-  const onMouseOver = (id: number) => dispatch(hoverOnCard(id));
-  const onMouseLeave = () => dispatch(hoverOnCard(null));
+  const onMouseOver = (id: number) => dispatch(setHoverCityIdAction(id));
+  const onMouseLeave = () => dispatch(setHoverCityIdAction(null));
 
   const cardListClass = classNames(
     {

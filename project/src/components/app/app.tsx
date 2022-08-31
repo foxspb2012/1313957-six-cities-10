@@ -11,10 +11,11 @@ import {browserHistory} from '../../browser-history';
 import {HistoryRouter} from '../history-route/history-route';
 import Loading from '../loading/loading';
 import {useAppSelector} from '../../hooks';
+import {getIsDataLoadedValue} from '../../store/hotels-data/selectors';
 
 function App(): JSX.Element {
 
-  const {isDataLoaded} = useAppSelector((state) => state);
+  const isDataLoaded = useAppSelector(getIsDataLoadedValue);
 
   if (isDataLoaded) {
     return (
@@ -28,11 +29,7 @@ function App(): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Login}
-          element={
-            <PrivateRoute>
-              <LoginScreen/>
-            </PrivateRoute>
-          }
+          element={<LoginScreen/>}
         />
         <Route
           path={AppRoute.Main}
@@ -41,14 +38,14 @@ function App(): JSX.Element {
         <Route
           path={AppRoute.Room}
           element={
-            <OfferScreen />
+            <OfferScreen/>
           }
         />
         <Route
           path={AppRoute.Favorites}
           element={
             <PrivateRoute>
-              <FavoriteScreen />
+              <FavoriteScreen/>
             </PrivateRoute>
           }
         />

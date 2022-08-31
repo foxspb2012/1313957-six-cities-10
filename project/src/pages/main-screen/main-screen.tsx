@@ -4,13 +4,16 @@ import MainCities from '../../components/main-cities/main-cities';
 import MainEmpty from '../../components/main-empty/main-empty';
 import {Cities} from '../../const';
 import {useAppSelector} from '../../hooks';
+import {getHotelsByChoosenCity, getSelectedCity} from '../../store/hotels-data/selectors';
+import {getActiveOffer} from '../../store/offers-process/selectors';
 import classNames from 'classnames';
 
 function MainScreen(): JSX.Element {
 
-  const hotels = useAppSelector((state) => state.hotels);
-  const currentCity = useAppSelector((state) => state.city);
-  const hotelsByCity = useAppSelector((state) => state.hotelsByCity);
+  const currentCity = useAppSelector(getSelectedCity);
+  const hotelsByCity = useAppSelector(getHotelsByChoosenCity);
+  const cityHover = useAppSelector(getActiveOffer);
+  const selectedHotel = hotelsByCity.find((hotel) => hotel.id === cityHover);
 
   const hasHotels = Boolean(hotelsByCity.length > 0);
 
@@ -18,7 +21,7 @@ function MainScreen(): JSX.Element {
 
   const citiesHotel = () => (
     hasHotels ?
-      <MainCities hotels={hotelsByCity} city={currentCity}/>
+      <MainCities hotels={hotelsByCity} city={currentCity} selectedHotel={selectedHotel}/>
       :
       <MainEmpty currentCity={currentCity}/>
   );
@@ -27,7 +30,7 @@ function MainScreen(): JSX.Element {
     <div className="page page--gray page--main">
       <Header isNavVisible/>
       <main className={mainClass}>
-        <CitiesList currentCity={currentCity} cities={Cities} hotels={hotels}/>
+        <CitiesList currentCity={currentCity} cities={Cities}/>
         {citiesHotel()}
       </main>
     </div>

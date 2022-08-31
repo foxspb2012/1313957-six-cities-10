@@ -2,15 +2,19 @@ import Header from '../../components/header/header';
 import Favorites from '../../components/favorites/favorites';
 import FavoritesEmpty from '../../components/favorites-empty/favorites-empty';
 import Footer from '../../components/footer/footer';
-import {hotels} from '../../mocks/hotels';
+import {useAppSelector} from '../../hooks';
 import classNames from 'classnames';
+import {getFavoriteHotels} from '../../store/hotels-data/selectors';
 
 function FavoriteScreen(): JSX.Element {
-  const favoritesEmpty = Boolean(hotels.length === 0);
+
+  const favoriteHotels = useAppSelector(getFavoriteHotels);
+
+  const favoritesEmpty = Boolean(favoriteHotels.length === 0);
 
   const favoriteContainer = (): JSX.Element => (
-    hotels.length !== 0 ?
-      <Favorites favorites={hotels}/>
+    favoriteHotels.length !== 0 ?
+      <Favorites favorites={favoriteHotels}/>
       :
       <FavoritesEmpty/>
   );

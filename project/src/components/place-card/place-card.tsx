@@ -1,7 +1,10 @@
 import type {Hotel} from '../../types/hotel';
-import {CardType} from '../../const';
-import {Link} from 'react-router-dom';
+import {CardType, AuthorizationStatus, AppRoute} from '../../const';
+import {Link, useNavigate} from 'react-router-dom';
 import {calculateRatingRound} from '../../utils';
+import {changeFavoriteStatusAction} from '../../store/api-action';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {getAuthorizationStatus} from '../../store/user-process/selectors';
 import classNames from 'classnames';
 
 type PlaceCardProps = {
@@ -15,7 +18,21 @@ function PlaceCard({hotel, cardType, onMouseOver, onMouseLeave}: PlaceCardProps)
 
   const {id, price, title, type, previewImage, isFavorite} = hotel;
 
+  const isAuth = useAppSelector(getAuthorizationStatus) === AuthorizationStatus.Auth;
+
   const rating = calculateRatingRound(hotel.rating);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    (isAuth) ?
+      dispatch(changeFavoriteStatusAction({
+        id,
+        status: isFavorite ? 0 : 1
+      }))
+      : navigate(AppRoute.Login);
+  };
 
   const articleClass = classNames('place-card',
     {
@@ -44,7 +61,7 @@ function PlaceCard({hotel, cardType, onMouseOver, onMouseLeave}: PlaceCardProps)
 
   const buttonClass = classNames('button place-card__bookmark-button',
     {
-      'place-card__bookmark-button--active': isFavorite
+      'place-card__bookmark-button--active': isFavorite && isAuth
     });
 
   return (
@@ -62,7 +79,7 @@ function PlaceCard({hotel, cardType, onMouseOver, onMouseLeave}: PlaceCardProps)
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={buttonClass} type="button">
+          <button className={buttonClass} type="button" onClick={handleClick}>
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -71,7 +88,7 @@ function PlaceCard({hotel, cardType, onMouseOver, onMouseLeave}: PlaceCardProps)
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating}%`}}></span>
+            <span style={{width: `${rating}`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
