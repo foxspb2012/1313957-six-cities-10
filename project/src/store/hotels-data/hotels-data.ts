@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {DEFAULT_CITY, NameSpace} from '../../const';
+import {DEFAULT_CITY, DEFAULT_SORT_VALUE, NameSpace} from '../../const';
 import {HotelData} from '../../types/state';
 import {getHotelsByCity, getSortedHotels} from '../../utils';
 import {
@@ -14,7 +14,7 @@ import {
 
 export const initialState: HotelData = {
   city: DEFAULT_CITY,
-  sortValue: 'Popular',
+  sortValue: DEFAULT_SORT_VALUE,
   hotels: [],
   hotelsByCity: [],
   isDataLoaded: false,

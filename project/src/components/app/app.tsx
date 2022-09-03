@@ -5,7 +5,6 @@ import FavoriteScreen from '../../pages/favorite-screen/favorite-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import {Route, Routes} from 'react-router-dom';
-import {ScrollToTop} from '../../utils';
 import {AppRoute} from '../../const';
 import {browserHistory} from '../../browser-history';
 import {HistoryRouter} from '../history-route/history-route';
@@ -25,7 +24,6 @@ function App(): JSX.Element {
 
   return (
     <HistoryRouter history={browserHistory}>
-      <ScrollToTop/>
       <Routes>
         <Route
           path={AppRoute.Login}
@@ -50,7 +48,7 @@ function App(): JSX.Element {
           }
         />
         <Route
-          path="*"
+          path={AppRoute.NotFoundPage}
           element={<NotFoundScreen/>}
         />
       </Routes>

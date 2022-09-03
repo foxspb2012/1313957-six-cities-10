@@ -2,7 +2,6 @@ import type {AuthData} from '../../types/auth';
 import {FormEvent, useRef} from 'react';
 import {useAppDispatch} from '../../hooks';
 import {loginAction} from '../../store/api-action';
-import {validatePassword} from '../../utils';
 
 function Login(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -17,7 +16,7 @@ function Login(): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (loginRef.current !== null && passwordRef.current !== null && validatePassword(passwordRef.current.value)) {
+    if (loginRef.current !== null && passwordRef.current !== null) {
       onSubmit({
         login: loginRef.current.value,
         password: passwordRef.current.value,
@@ -31,14 +30,13 @@ function Login(): JSX.Element {
       <form className="login__form form" action="" method="post" onSubmit={handleSubmit}>
         <div className="login__input-wrapper form__input-wrapper">
           <label className="visually-hidden">E-mail</label>
-          <input ref={loginRef} className="login__input form__input" type="email" name="email" placeholder="Email"
-            required
-          />
+          <input ref={loginRef} className="login__input form__input" type="email" name="email" placeholder="Email" required/>
         </div>
         <div className="login__input-wrapper form__input-wrapper">
           <label className="visually-hidden">Password</label>
-          <input ref={passwordRef} className="login__input form__input" type="password" name="password"
-            placeholder="Password" required
+          <input ref={passwordRef} className="login__input form__input" type="password"
+            name="password" placeholder="Password" title='Minimum one letter and one number. No spaces.'
+            pattern='^(?=.*[A-Za-z])(?!.* )(?=.*\d).{1,}$' required
           />
         </div>
         <button className="login__submit form__submit button" type="submit">Sign in</button>
@@ -46,5 +44,6 @@ function Login(): JSX.Element {
     </section>
   );
 }
+
 
 export default Login;

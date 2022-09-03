@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import type {Comment} from '../../types/comment';
 import {calculateRating} from '../../utils';
+import {COMMENT_DATE_FORMAT} from '../../const';
 
 type ReviewProps = {
   comment: Comment;
@@ -11,7 +12,7 @@ function Comments(props: ReviewProps): JSX.Element {
   const {comment} = props;
 
   const commentDate = (date: string) => (
-    dayjs(date).format('MMMM YYYY')
+    dayjs(date).format(COMMENT_DATE_FORMAT)
   );
 
   const reviewRating = (rating: number) => calculateRating(rating);

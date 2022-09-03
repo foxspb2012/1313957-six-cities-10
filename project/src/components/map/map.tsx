@@ -3,7 +3,7 @@ import useMap from '../../hooks/useMap';
 import {useRef, useEffect} from 'react';
 import {Icon, Marker} from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import {PIN_SIZES} from '../../const';
+import {IconUrl, PIN_SIZES} from '../../const';
 
 type CityMapProps = {
   hotels: Hotel[];
@@ -36,13 +36,13 @@ function Map({hotels, selectedHotel}: CityMapProps): JSX.Element {
       hotels.forEach((hotel) => {
 
         const defaultPin = new Icon({
-          iconUrl: 'img/pin.svg',
+          iconUrl: IconUrl.Default,
           iconSize: PIN_SIZES.iconSize,
           iconAnchor: PIN_SIZES.iconAnchor
         });
 
         const currentPin = new Icon({
-          iconUrl: 'img/pin-active.svg',
+          iconUrl: IconUrl.Current,
           iconSize: PIN_SIZES.iconSize,
           iconAnchor: PIN_SIZES.iconAnchor
         });

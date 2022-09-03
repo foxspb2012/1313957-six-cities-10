@@ -1,7 +1,7 @@
 import React, {useState, ChangeEvent, Fragment} from 'react';
 import {useParams} from 'react-router-dom';
 import {useAppDispatch} from '../../hooks';
-import {RATING_DATA, COMMENT_LENGTH_MIN} from '../../const';
+import {DATASET_RATINGS, COMMENT_LENGTH_MIN} from '../../const';
 import {addCommentAction} from '../../store/api-action';
 
 type CommentStateData = {
@@ -46,14 +46,14 @@ function CommentForm(): JSX.Element {
   };
 
   const isDisabled =
-    reviewData.comment.length < COMMENT_LENGTH_MIN && reviewData.rating === '';
+    reviewData.rating === '' || reviewData.comment.length < COMMENT_LENGTH_MIN;
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
 
-        {RATING_DATA.map(({rating, value}) => (
+        {DATASET_RATINGS.map(({rating, value}) => (
           <Fragment key={rating}>
             <input
               className="form__rating-input visually-hidden"

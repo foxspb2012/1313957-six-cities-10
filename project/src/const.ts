@@ -17,20 +17,11 @@ export enum AuthorizationStatus {
 
 export enum APIRoute {
   Hotels = '/hotels',
-  HotelsId = '/hotels/{hotelId}',
-  HotelsIdNearby = '/hotels/{hotelId}/nearby',
   Login = '/login',
   Logout = '/logout',
   Comment = '/comments/',
   Favorites = '/favorite/'
 }
-
-export const Housing: { [key: string]: string } = {
-  apartment: 'Apartment',
-  room: 'Private Room',
-  house: 'House',
-  hotel: 'Hotel',
-};
 
 export const Cities: string[] = [
   'Paris',
@@ -44,6 +35,7 @@ export const Cities: string[] = [
 export const MAX_IMG_COUNT = 6;
 
 export const DEFAULT_CITY = 'Paris';
+export const DEFAULT_SORT_VALUE = 'Popular';
 
 export const PIN_SIZES: Pin = {
   iconSize: [27, 39],
@@ -63,7 +55,7 @@ export const CardType = {
   NEAR_PLACES: 'near-places'
 };
 
-export const RATING_DATA = [
+export const DATASET_RATINGS = [
   {
     rating: '5',
     value: 'perfect'
@@ -87,9 +79,17 @@ export const RATING_DATA = [
 ];
 
 export const COMMENT_LENGTH_MIN = 50;
+export const RATING_COEFFICIENT = 100 / 5;
 
 export enum NameSpace {
   Data = 'DATA',
   Offers = 'OFFERS',
   User = 'USER',
 }
+
+export enum IconUrl {
+  Default = 'img/pin.svg',
+  Current = 'img/pin-active.svg',
+}
+
+export const COMMENT_DATE_FORMAT = 'MMMM YYYY';

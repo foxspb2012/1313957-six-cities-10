@@ -1,20 +1,8 @@
 import type {Hotel} from './types/hotel';
-import {useEffect} from 'react';
-import {useLocation} from 'react-router-dom';
-import {SortOptions} from './const';
+import {SortOptions, RATING_COEFFICIENT} from './const';
 
-export function ScrollToTop() {
-  const {pathname} = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-}
-
-export const calculateRating = (rating: number) => (`${(rating * 100 / 5).toString()}%`) as string;
-export const calculateRatingRound = (rating: number) => (`${(Math.round(rating) * 100 / 5).toString()}%`) as string;
+export const calculateRating = (rating: number) => (`${(rating * RATING_COEFFICIENT).toString()}%`) as string;
+export const calculateRatingRound = (rating: number) => (`${(Math.round(rating) * RATING_COEFFICIENT).toString()}%`) as string;
 
 export const getSortedHotels = (hotels: Hotel[], currentSort: string) => {
   switch (currentSort) {
@@ -43,13 +31,3 @@ export const getSortedHotels = (hotels: Hotel[], currentSort: string) => {
 
 export const getHotelsByCity = (hotelList: Hotel[], city: string) => hotelList.filter((hotel) => hotel.city.name === city);
 
-export const validatePassword = (password: string) => {
-
-  if (!password) {
-    return false;
-  }
-
-  const regPassword = /(?=.*[0-9])/;
-
-  return password.search(regPassword) > -1;
-};
