@@ -26,50 +26,50 @@ function Map({hotels, selectedHotel}: CityMapProps): JSX.Element {
   const map = useMap(mapRef, city);
 
   useEffect(() => {
-    if (map) {
-      const {location :{latitude, longitude, zoom}} = city;
-      map.setView(
-        [latitude, longitude],
-        zoom,
-      );
+    let isMounted = true;
 
-      hotels.forEach((hotel) => {
+    if(isMounted) {
+      if (map) {
+        const {location :{latitude, longitude, zoom}} = city;
+        map.setView(
+          [latitude, longitude],
+          zoom,
+        );
 
-        const defaultPin = new Icon({
-          iconUrl: IconUrl.Default,
-          iconSize: PIN_SIZES.iconSize,
-          iconAnchor: PIN_SIZES.iconAnchor
+        hotels.forEach((hotel) => {
+
+          const defaultPin = new Icon({
+            iconUrl: IconUrl.Default,
+            iconSize: PIN_SIZES.iconSize,
+            iconAnchor: PIN_SIZES.iconAnchor
+          });
+
+          const currentPin = new Icon({
+            iconUrl: IconUrl.Current,
+            iconSize: PIN_SIZES.iconSize,
+            iconAnchor: PIN_SIZES.iconAnchor
+          });
+
+          const marker = new Marker({
+            lat: hotel.location.latitude,
+            lng: hotel.location.longitude
+          });
+
+          marker
+            .setIcon(
+              selectedHotel === hotel
+                ? currentPin
+                : defaultPin
+            )
+            .addTo(map);
         });
-
-        const currentPin = new Icon({
-          iconUrl: IconUrl.Current,
-          iconSize: PIN_SIZES.iconSize,
-          iconAnchor: PIN_SIZES.iconAnchor
-        });
-
-        const marker = new Marker({
-          lat: hotel.location.latitude,
-          lng: hotel.location.longitude
-        });
-
-        marker
-          .setIcon(
-            selectedHotel === hotel
-              ? currentPin
-              : defaultPin
-          )
-          .addTo(map);
-      });
+      }
     }
 
     return () => {
-      map?.eachLayer((it) => {
-        if (it.getPane()?.classList.contains('leaflet-marker-pane')) {
-          it.remove();
-        }
-      });
+      isMounted = false;
     };
-  });
+  }, [map, hotels, selectedHotel, city]);
 
   return (
     <div

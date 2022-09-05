@@ -5,6 +5,8 @@ import {Provider} from 'react-redux';
 import {store} from './store';
 import {checkAuthAction, getFavoriteHotelsAction, getHotelsAction} from './store/api-action';
 import {ToastContainer} from 'react-toastify';
+import {HistoryRoute} from './components/history-route/history-route';
+import {browserHistory} from './browser-history';
 
 store.dispatch(checkAuthAction());
 store.dispatch(getHotelsAction());
@@ -17,8 +19,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ToastContainer />
-      <App/>
+      <HistoryRoute history={browserHistory}>
+        <ToastContainer/>
+        <App/>
+      </HistoryRoute>
     </Provider>
   </React.StrictMode>,
 );

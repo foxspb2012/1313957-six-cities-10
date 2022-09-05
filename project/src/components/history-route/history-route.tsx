@@ -8,7 +8,7 @@ export interface HistoryRouterProps {
   children?: React.ReactNode
 }
 
-export function HistoryRouter({
+export function HistoryRoute({
   basename,
   children,
   history,

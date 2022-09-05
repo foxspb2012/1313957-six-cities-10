@@ -10,10 +10,6 @@ import {getLoadingError, getNearHotels, getHotel, getReviews} from '../../store/
 
 function OfferScreen(): JSX.Element {
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const {id} = useParams() as { id: string };
   const hotel = useAppSelector(getHotel);
   const nearHotels = useAppSelector(getNearHotels);
@@ -30,7 +26,7 @@ function OfferScreen(): JSX.Element {
     }
   }, [id, hotel, dispatch]);
 
-  if (id && (hotel === null || hotel.id !== Number(id))) {
+  if (id && hotel === null) {
     if (isLoadingError) {
       return <NotFoundScreen/>;
     }
